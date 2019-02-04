@@ -1,0 +1,14 @@
+
+
+Analysis of Transport Protocols for Smart Grid
+
+Presenter: Abhijith Dadaga Arkakeerthy
+Project Advisor: Dr. Isaac Ghansah
+
+    The demand for power is continually varying and always increasing. The current power grid, built few decades ago is capable of only transmitting power from Power Station to Consumer places via Utilities. I.e., Communication happens only in one direction. There is no feedback from the consumers place in real-time, and hence the utility offices have no idea of whether the power is being utilized or not. Based on some estimates/statistics, they allocate certain amount of power to a particular area. This is not efficient, due to the fact that the demand for power is always changing. And also, since the demand for power is increasing every day, we do not afford to waste it. The efficient way is that, if the power is not being utilized at some place, then it should be sent to a place, where there is a requirement. The current power grid is not capable of doing that job. Hence a new technology called Smart Grid is being considered for distributing electricity. Smart Grid enables consumers and utility offices to send and receive signals to co-ordinate for the better utilization of the electricity.
+
+    For Smart Grid to become successful, it needs to exchange messages. For this, it requires communication underneath it to be reliable. I.e., it relies heavily on the transport protocol for its operation. According to Smart Grid Characteristics, the communication messages can be mainly divided into two parts: control messages (Real-Time in Nature) and data messages. Control messages would be Price variation messages, Emergency event notification messages, or restore to normal operation messages and so on. The data messages would be the usage data required for billing and statistics. 
+
+    Since Smart Grid success mainly depends on the Transport Protocol, we need to choose a transport protocol that best matches the Smart Grid’s requirements.  Currently there exists a numerous set of transport protocols. The purpose of this Masters' Project is to Identify a set of suitable transport protocols based on the Smart Grid's requirements and characteristics (like reliability, scalability, latency, bandwidth, self healing), analyze the set of identified protocols, and to choose (or propose) the best suitable transport protocol(s) for use with the Smart Grid.
+
+
