@@ -1,0 +1,110 @@
+/*	Name : ABHIJITH D.A.		Reg.no : 1PI01IS001
+
+A1a>.Write and execute a program using pipes to perform th following
+	a.To send the name of the file from a client process to the 
+	server process
+	b.To send back the contents of the requested file from the 
+	server process to a client process
+*/
+	
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+#define MAXLINE 1024
+
+
+/*Client of IPC*/
+void client(int readfd,int writefd)
+{
+	size_t len,n;
+	char buff[MAXLINE];
+	printf("\nEnter the filename:");
+	fgets(buff,MAXLINE,stdin);
+	len = strlen(buff);
+	if (buff[len-1]='\n')
+	 len--;
+	//write to IPC
+	write (writefd,buff,len);
+	//read from the IPC
+
+	while ( (n=read(readfd,buff,10))>0)
+	      write(STDOUT_FILENO,buff,10);
+}
+/*Server of IPC*/
+void server(int readfd,int writefd)
+{
+	int fd;
+	ssize_t n;
+	char buff[MAXLINE];
+
+	n = read(readfd,buff,MAXLINE);
+	buff[n]='\0';
+	
+	//open file for reading
+	if ((fd = open(buff,O_RDONLY))<0)
+	{
+	  printf("Error Opening file\n");
+	  exit(1);
+         }
+	//read to a temporary buffer
+	n =read (fd,buff,MAXLINE);
+	//write the contents of the file to the IPC
+	if ( write(writefd,buff,n ) < 0)
+	{
+		printf("Error Writing to IPC\n");
+		exit(1);
+        }
+	close(fd);
+}
+
+
+int main()
+{
+	int pipe1[2],pipe2[2];
+	pid_t pid;
+	//create two new pipes
+	if ( pipe(pipe1) < 0)
+	{
+		printf("Error in Creating pipe\n");
+		exit(1);
+	}
+
+	if (pipe(pipe2)< 0)
+	{
+		printf("Error in Creating pipe\n");
+		exit(1);
+	}
+
+	if ( (pid = fork()) <0)
+	{
+		printf ("fork Error: Quitting....\n");
+		exit(1);
+	}
+
+	if (pid == 0)
+	{
+
+		//child process
+		close(pipe1[1]);//close write end of pipe1
+		close(pipe2[0]);//close read end of pipe2
+		server(pipe1[0],pipe2[1]);
+	}
+	else
+	{
+		close(pipe1[0]);//close read end of pipe1
+		close(pipe2[1]);//close write end of pipe2
+		client(pipe2[0],pipe1[1]);
+		waitpid(pid,NULL,0);
+	}
+ return 0;
+}
+
+
+-------------------------------Output------------------------------
+
+[root@localhost pipes]# ./a.out
+
+Enter the filename:foo.txt
+This is a demo of IPC using pipes.

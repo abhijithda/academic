@@ -1,0 +1,22 @@
+[VB 6 Data Form Wizard]
+DatabaseTypeIndex=1
+DatabaseTypeName=Remote(ODBC)
+DSN=0
+UID=scott
+PWD=tiger
+Driver=22
+Server=ABHI
+BindType=0
+FormLayout=3
+AddBtn=0
+DelBtn=0
+RefBtn=1
+UptBtn=0
+ClsBtn=1
+DataControl=1
+[MSFlexGrid Wizard]
+GridType=0
+GridStyle=0
+AllowColDragging=1
+AllowColSorting=1
+AllowDragAndSort=1

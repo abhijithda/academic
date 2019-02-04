@@ -1,0 +1,74 @@
+#	Name : ABHIJITH D.A. 	Reg.No : 1PI01IS001
+
+#8a>.	Write a shell script that finds and displays all the
+#	links to a file specified as the first argument to the
+#	script. The second argument, which is optimal can be 
+#	used to specify the directory in which the search is to 
+#	begin. If this second argument is not present, the search
+#	is to begin from the current directory. In either case,
+#	the starting directory as well as all it's sub-directories
+#	at all levels must be searched. The script need not 
+#	include any error checking.
+
+if [ $# = 0 ]
+then
+	echo " No arguments passed."
+	exit
+fi
+
+if [ $# = 1 ]
+then
+	dir=.
+else
+	dir=$2
+fi
+cd $dir
+if [ ! -e $1 ]
+then
+	echo "The specified file doesn't exist."
+	exit
+fi
+
+file=$1
+set -- `ls -l $file`
+link=$2
+soft_link=`ls -l $file | cut -c 1`
+set -- `ls -i $file`
+inode=$1
+if [ $link -eq 1 ]
+then
+	echo "File $file has no Hard links."
+else
+	echo "File $file has $link Hard links."
+	find "$dir" -inum $inode -print
+#	if [ $soft_link == l ]
+#	then
+		echo "Soft links of file $file are "
+		find "$dir" -lname $file -print
+#	else
+#		echo "There are no Soft links for $file file."
+#	fi
+fi
+
+#--------------------------Outputs------------------------
+
+#	[root@localhost unix]#ls -li a1 a_hard a_soft s_a1
+#	 166847 -rwxrwxr-x    2 root     root            0 Nov 23 23:49 [01;32ma1
+#	 166847 -rwxrwxr-x    2 root     root            0 Nov 23 23:49 [01;32ma_hard
+#	 166855 lrwxrwxrwx    1 root     root            2 Nov 23 23:49 [01;36ma_soft[00m -> [01;32ma1[00m
+#	 166857 lrwxrwxrwx    1 root     root            2 Nov 25 00:30 [01;36ms_a1[00m -> [01;32ma1[00m
+	
+
+#1>.	[root@localhost unix]# sh 8a.sh a1 .
+#	File a1 has 2 Hard links.
+#	./a1
+#	./a_hard
+#	Soft links of file a1 are 
+#	./a_soft
+#	./s_a1
+
+#2>.	[root@localhost unix]# sh 8a.sh a1 .
+#	 No arguments passed.
+
+#3>.	[root@localhost unix]#sh 8a.sh a_soft
+#	File a_soft has no Hard links.

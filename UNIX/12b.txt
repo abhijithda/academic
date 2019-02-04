@@ -1,0 +1,106 @@
+#	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+#12b>.	Write a PERL program to that reads two lines of words,
+#	stores from each line in the separate hash, and prints
+#	a sorted list of words, with each word following a 
+#	message "only in line 1", or "only in line 2", or "both 
+#	in line 1 and line 2" as appropriate.
+
+
+printf("\n Enter the first line : \n");
+chop($line1=<STDIN>);
+printf("\n Enter the second line : \n");
+chop($line2=<STDIN>);
+$line1=~s/A-Z/a-z/g;
+$line2=~s/A-Z/a-z/g;
+@arr1=sort split(/\s+/,$line1);
+@arr2=sort split(/\s+/,$line2);
+$len1=@arr1;
+$len2=@arr2;
+
+while($i < $len1 && $j < $len2) {
+	$x=$arr1[$i] cmp $arr2[$j];
+	if ( $x == 0 )	{
+		printf("\n $arr1[$i] : Both in line 1 and line 2\n");
+		$i++;
+		$j++;
+	}
+	if($x==-1) {
+		printf("\n $arr1[$i] : Line 1 only.\n");
+		$i++;
+	}
+	if($x>=1) {
+		printf("\n $arr2[$j] : Line 2 only.\n");
+		$j++;
+	}
+}
+$line=1;
+if($i == $len1) {
+	$i=$j;
+	$len1=$len2;
+	@arr1=@arr2;
+	$line=2;
+}
+while($i < $len1) {
+	printf("\n $arr1[$i] : Line $line only.\n");
+	$i++;
+}
+
+#--------------------------Outputs--------------------------
+
+#1>.[root@localhost temp]# perl a12b.pl
+#
+# Enter the first line : 
+#Abhijith is a man.
+#
+# Enter the second line : 
+#A is minute in his i,e. Abhijith 's world .
+#
+# 's : Line 2 only.
+#
+# A : Line 2 only.
+#
+# Abhijith : Both in line 1 and line 2
+#
+# a : Line 1 only.
+#
+# his : Line 2 only.
+#
+# i,e. : Line 2 only.
+#
+# in : Line 2 only.
+#
+# is : Both in line 1 and line 2
+#
+# man. : Line 1 only.
+#
+# minute : Line 2 only.
+#
+# world. : Line 2 only.
+
+
+#2>.[root@localhost temp]# perl a12b.pl
+#
+# Enter the first line : 
+#success is a way to find thingd s
+#
+# Enter the second line : 
+#It's just a a way
+# It's : Line 2 only.
+#
+# a : Both in line 1 and line 2
+#
+# find : Line 1 only.
+#
+# is : Line 1 only.
+#
+# just : Line 2 only.
+#
+# success : Line 1 only.
+#
+# things : Line 1 only.
+#
+# to : Line 1 only.
+#
+# way : Both in line 1 and line 2
+

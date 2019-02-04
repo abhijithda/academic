@@ -1,0 +1,61 @@
+#	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+#10a>.	Write an awk script that folds long lines into 40 columns.
+#	Thus any line that exceeds 40 characters must be broken 
+#	after 40th ; a\ is to be append as the indication of folding
+#	and the processing is to be continued with the residue. The 
+#	input is to be supplied through a text file created by the 
+#	user.
+
+BEGIN	{
+		printf("\n");
+	}
+
+{
+	if(length($0)<=40)
+		printf("%s\n",$0);
+	else
+	{
+		x=$0;
+		while(length(x)>40)
+		{
+			printf("\n%s\\",substr(x,1,40));
+			x=substr(x,41,length(x));
+		}
+		printf("\n %s",x);
+	}
+}
+
+END	{
+		printf("\n");
+	}
+
+#---------------------------Output------------------------------
+
+#[root@localhost unix]# cat 10a_input
+#hello world.
+#World is not enough.......\\\\\\\\ What do you say?
+#adhfajfh	abhijith	d.a.	ABHIJITH D.A.	dear
+#adfkjhujhsaoijhaiofguw9a8ijuf9aoshngfeuhr9ge8arohwrngsuhsad98i
+#adkjfl;asdf,mxcnv;lasZjkdhfoi	ol;hf
+#
+#the thing in the wolrd is something in the life of happy. What do you want to say? Tell to your soul It will reply without knowing to U.
+
+
+#[root@localhost unix]# awk -f 10a.awk 10a_input
+#
+#hello world.
+#
+#World is not enough.......\\\\\\\\ What \
+# do you say?
+#adhfajfh	abhijith	d.a.	ABHIJITH D.A.	dea\
+# r
+#adfkjhujhsaoijhaiofguw9a8ijuf9aoshngfeuh\
+# r9ge8arohwrngsuhsad98iadkjfl;asdf,mxcnv;lasZjkdhfoi	ol;hf
+#
+#
+#the thing in the wolrd is something in t\
+#he life of happy. What do you want to sa\
+#y? Tell to your soul It will reply witho\
+# ut knowing to U.
+

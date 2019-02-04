@@ -1,0 +1,62 @@
+#	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+#14a>.	Write a PERL program to determine word frequencies
+#	using associative arrays, in given paragraph of text.
+#	You can assume that the paragraph begins with a word,
+#	(not with a white space) and that there are no 
+#	hyphenated words. Words capitalized differntly should
+#	be treated as same words.
+
+@para=<>;
+chop(@para);
+foreach $line (@para) {
+	@arr=split(/\s+/,$line);
+	foreach $word (@arr) {
+		$word=~tr/A-Z/a-z/;
+		$cnt{$word}+=1;
+	}
+}
+foreach $key(sort(keys(%cnt))) { 
+	printf("\n $key :=>> $cnt{$key} time/s.");
+}
+
+
+#---------------------------------Output------------------------
+
+#[root@localhost unix]# perl 14a.pl
+#This program finds the number of frequencies a word occurs in a program.
+#I,e. in a paragraph.
+#Let's check it.
+#Unix perl program 14a.pl done on linux system.
+#Linux and unix are almost used similarly.
+#
+# 14a.pl :=>> 1 time/s.
+# a :=>> 3 time/s.
+# almost :=>> 1 time/s.
+# and :=>> 1 time/s.
+# are :=>> 1 time/s.
+# check :=>> 1 time/s.
+# done :=>> 1 time/s.
+# finds :=>> 1 time/s.
+# frequencies :=>> 1 time/s.
+# i,e. :=>> 1 time/s.
+# in :=>> 2 time/s.
+# it. :=>> 1 time/s.
+# let's :=>> 1 time/s.
+# linux :=>> 2 time/s.
+# number :=>> 1 time/s.
+# occurs :=>> 1 time/s.
+# of :=>> 1 time/s.
+# on :=>> 1 time/s.
+# paragraph. :=>> 1 time/s.
+# perl :=>> 1 time/s.
+# program :=>> 2 time/s.
+# program. :=>> 1 time/s.
+# similarly. :=>> 1 time/s.
+# system. :=>> 1 time/s.
+# the :=>> 1 time/s.
+# this :=>> 1 time/s.
+# unix :=>> 2 time/s.
+# used :=>> 1 time/s.
+# word :=>> 1 time/s.
+#[root@localhost unix]# 

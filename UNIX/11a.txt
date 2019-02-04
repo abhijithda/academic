@@ -1,0 +1,37 @@
+#	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+#11a>.	Write the HTML code to generate a web page that 
+#	displays a COMBO box with a choice of four names.
+#	Embed a perl script into this HTML code to extract
+#	the name selected by the user. Remove any spaces 
+#	in the name, convert it to lower-case and then 
+#	displays the result in a text box. The page is to 
+#	viewed using a suitable browser.
+
+#!/usr/bin/perl 
+
+$a=<STDIN>;
+($key,$value)=split(/=/,$a);
+$value=~ s/\+//g;
+$value=lc($value);
+printf "Content-type : text/html","\n\n";
+printf "<HTML><HEAD></HEAD><BODY> String : $value </BODY> </HTML>";
+
+#------------------------- HTML Code ---------------------------
+
+#<HTML>
+#<HEAD>
+#</HEAD>
+#<BODY>
+#<FORM ACTION="http://127.0.0.1/cgi-bin/11a.cgi" METHOD="POST">
+#<SELECT SIZE="1" NAME="Key">
+#<OPTION SELECTED VALUE="String One">String One
+#<OPTION VALUE="String Two">String Two
+#<OPTION VALUE="String Three">String Three
+#<OPTION VALUE="String Four">String Four
+#</SELECT>
+#<INPUT TYPE="SUBMIT" VALUE="Send!">
+#</FORM>
+#</BODY>
+#</HTML>
+

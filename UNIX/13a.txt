@@ -1,0 +1,33 @@
+
+#	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+#13a>.	Write a PERL program to recognize palindromes. The
+#	program must handle one letter words (trivially 
+#	palindromes) and be permissive with white space and
+#	punctuation. (example "satin, oscillate my metallic
+#	sonatas" is to be recognized as palindrome).
+
+printf("\n Enter the string : ");
+chop($str=<STDIN>);
+$str=lc($str);
+$str=~ s/[^a-zA-Z0-9]//g;
+if(reverse($str) eq $str){
+	printf("\n Palindrome.\n");
+}
+else{
+	printf("\n Not Palindrome.\n");
+}
+
+#--------------------------Outputs---------------------------
+
+#1>.	[root@localhost unix]# perl 13a.pl
+#
+#	 Enter the string : Madam
+#
+#	 Palindrome.
+
+#2>.	[root@localhost unix]# perl 13a.pl][K
+#
+#	 Enter the string : hello
+#
+#	 Not Palindrome.

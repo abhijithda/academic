@@ -1,0 +1,64 @@
+#	Name : ABHIJITH D.A. 	Reg.No : 1PI01IS001
+
+#12a>.	Write an awk script that accepts date argument in the form
+#	if mm-dd-yy and display in the form of day, month, year. 
+#	The script should check the validity of the argument and
+#	in case of error display a suitable message.
+
+BEGIN	{
+printf "enter date\n" ;
+str=" ";
+getline dates < "/dev/tty" ;
+split(dates,arr,"-");
+if(arr[1] < 1 || arr[1] > 12)
+str="error in month,invalid date";
+else
+if(arr[2] < 1 || arr[2] > 31)
+str="error in date,invalid date";
+else
+if(arr[1] == 4 || arr[1] == 6 || arr[1] == 9 || arr[1] == 11 && arr[2] > 30)
+str="invalid date";
+else
+if(arr[1]==2 && arr[2]>29)
+str="error in days,invalid date"
+else{
+leap = (arr[3]%400 ==0 || ( arr[3]%4 == 0 && arr[3]%100 != 0) );
+if(!leap && arr[1] == 2 && arr[2] > 28)
+str="not a leap year to have 29 days ,invalid date";
+}
+
+if(str !=  " "){
+printf("%s\n",str);
+exit;}
+else
+printf("date in dd-mm-yy format : %d-%d-%d\n",arr[2],arr[1],arr[3]); 
+}
+
+
+#-----------------------Outputs-------------------------
+
+#1>.	 [root@localhost awks]# awk -f 12a.awk
+#	 enter date
+#	 2-29-2000
+#	 date in dd-mm-yy format : 29-2-2000
+
+#2>.	 [root@localhost awks]# awk -f 12a.awk
+#	 enter date
+#	 2-29-2001
+#	 not a leap year to have 29 days ,invalid date
+
+#3>.	 [root@localhost awks]# awk -f 12a.awk
+#	 enter date
+#	 13-30-2000
+#	 error in month,invalid date
+
+#4>.	 [root@localhost awks]# awk -f 12a.awk
+#	 enter date
+#	 12-31-2004
+#	 date in dd-mm-yy format : 31-12-2004
+
+#5>.	 [root@localhost awks]# awk -f 12a.awk
+#	 enter date
+#	 12-32-2003
+#	 error in date,invalid date
+

@@ -1,0 +1,84 @@
+/*	Name : ABHIJITH D.A.		Reg.no : 1PI01IS001
+
+A3>.	Write and execute a program to sort given N elements using 
+	message Queues
+*/ 
+
+#include <iostream.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/msg.h>
+#include <unistd.h>
+#include "functions.h"
+struct{
+  long mtype;//type of read or write 0 read 1 write
+ int mtext[20];//actual data
+}buff,recvbuff;
+/* Main Fucntion */
+int main()
+{
+ int msgid=msgget((key_t)0x1, IPC_CREAT|0666);
+ buff.mtype=1;
+ recvbuff.mtype=1;
+ int a[20], n, p, s, e, i, j, k, b[20];
+ pid_t pid;
+ cout<<"\nEnter the number of processes : "; cin>>p;
+ cout<<"\nEnter the number of elements : ";  cin>>n;
+ cout<<"\nEnter the elements of the array : ";
+ accept_mat1D(a,n);
+ s=0, e=n/p;
+ for(i=0; i<p; i++){
+  pid=fork();
+  if(pid!=0){
+   for(j=s,k=0; j<e; j++,k++)
+	    buff.mtext[k]=a[j];
+	   msgsnd(msgid, &buff, 20, 0);
+  }
+  else{
+   msgrcv(msgid, &recvbuff, 20, 1, 0);
+   sort(n/p, recvbuff.mtext);
+    cout<<"\nPartially sorted array : ";
+    display(n/p, recvbuff.mtext);
+    msgsnd(msgid, &recvbuff, 20, 0);
+  }
+  wait(0);
+  msgrcv(msgid, &buff, 20, 1, 0);
+  for(j=s,k=0; j<e; j++,k++)
+    a[j]=buff.mtext[k];
+  s=e;e+=n/p;
+ }
+ cout<<"\nThe partially sorted array is : ";
+ display(n, a);
+ sortjoin(n, p, a, b);
+ cout<<"\nThe sorted array is : ";
+ display(n, b);
+ return 0;
+}
+
+
+/*-------------------------------Output------------------------------
+
+[root@localhost NPlab]# ./a.out
+
+Enter the number of processes : 4
+
+Enter the number of elements : 8
+
+Enter the elements of the array : 12
+-0
+9
+-29
+89
+78
+45
+152
+
+Partially sorted array : 0      12
+Partially sorted array : -29    9
+Partially sorted array : 78     89
+Partially sorted array : 45     152
+The partially sorted array is : 0       12      -29     9       78      89      45      152
+Counter array :0        2       4       6
+Display before joining : 0      12      -29     9       78      89      45      152
+The sorted array is : -29       0       9       12      45      78      89      152
+*/

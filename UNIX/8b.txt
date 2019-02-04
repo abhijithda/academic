@@ -1,0 +1,25 @@
+#	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+#8b>.	Write a perl script which echoes its command line arguments,
+#	one per line after translating all lower case to upper case.
+
+
+
+$len=@ARGV;
+if($len<1){
+        printf("Wrong Arguments");
+        exit;
+}
+foreach $str(@ARGV) {
+printf("\n %s\n",uc($str));
+}
+
+#-----------------------Outputs----------------------
+
+#[pi01is001@localhost pi01is001]$ perl 8b.pl abhijith ABHI Hello
+#
+# ABHIJITH
+#
+# ABHI
+#
+# HELLO

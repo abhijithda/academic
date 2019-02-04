@@ -1,0 +1,31 @@
+#	Name : ABHIJITH 	Reg.No : 1PI01IS001
+
+#5a>.	Write a shell script which accepts valid login names as
+#	arguments and prints their corresponding home directories.
+#	If no arguments are specified, print a suitable error message
+
+
+if [ $# -eq 0 ]
+then
+ echo
+ exit
+fi
+cat /etc/passwd > filea
+cut -d : -f 1,6 filea > fileb
+grep -w "^$1" fileb > filec
+if [ $? -ne 0 ]
+then
+ echo "Invalid Login Name."
+else
+ echo "Login Name is valid."
+ cat filec
+fi
+
+#---------------------------Outputs------------------------
+#
+#1>.	[pi01is001@localhost pi01is001]$ sh 5a.sh abhi
+#	Invalid Login Name.
+
+#2>.	[pi01is001@localhost pi01is001]$ sh 5a.sh pi01is001
+#	Login Name is valid.
+#	pi01is001:/home/pi01is001

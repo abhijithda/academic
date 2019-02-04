@@ -1,0 +1,15 @@
+Line 14: Class MSDataRepeaterLib.DataRepeater of control DataRepeater1 was not a loaded control class.
+Line 32: Class MSComCtl2.DTPicker of control DTPicker1 was not a loaded control class.
+Line 15: The property name Bindings in DataRepeater1 is invalid.
+Line 21: The property name _ExtentX in DataRepeater1 is invalid.
+Line 22: The property name _ExtentY in DataRepeater1 is invalid.
+Line 23: The property name _StreamID in DataRepeater1 is invalid.
+Line 24: The property name _Version in DataRepeater1 is invalid.
+Line 25: The property name Caption in DataRepeater1 is invalid.
+Line 29: The property name RepeatedControlName in DataRepeater1 is invalid.
+Line 38: The property name _ExtentX in DTPicker1 is invalid.
+Line 39: The property name _ExtentY in DTPicker1 is invalid.
+Line 40: The property name _Version in DTPicker1 is invalid.
+Line 41: The property name Format in DTPicker1 is invalid.
+Line 42: The property name UpDown in DTPicker1 is invalid.
+Line 43: The property name CurrentDate in DTPicker1 is invalid.

@@ -1,0 +1,104 @@
+/*	Name : ABHIJITH D.A.		Reg.no : 1PI01IS001
+
+A1c>.	Write and execute a program using message queues to perform the
+	 following 
+	a.To send the name of the file from a client process to the server
+	 process
+	b.To send back the contents of the requested file from the server 
+	 process to a client process
+
+/*The header for message queues:mesgqu.h*/
+
+#include <stdio.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <fcntl.h>
+#define MAXLINE 256
+#define MAXMESGDATA (PIPE_BUF - 2*sizeof(long))
+#define MSG_R 0400
+#define MSG_W 0200
+/*default permission for the messgae queue*/
+#define SVMSG_MODE  (MSG_R |MSG_W|MSG_R >> 3|MSG_R >>6)
+#define MESGHDRSIZE (sizeof(struct mymesg) - MAXMESGDATA)
+/*define two message queue identifiers*/
+#define MQ_KEY1 1234L
+#define MQ_KEY2 1245L
+struct mymesg  {
+	long mesg_len; //length
+	long mesg_type; //type of message > 0
+	char mesg_data[MAXMESGDATA];
+};
+
+//message send
+
+ssize_t mesg_send(int id,struct mymesg *mptr)
+{
+
+return (msgsnd(id,&(mptr->mesg_type),mptr->mesg_len,0));
+
+}
+
+
+ssize_t mesg_recv(int id,struct mymesg *mptr)
+{
+
+ssize_t n;
+n = msgrcv(id,&(mptr->mesg_type),MAXMESGDATA,mptr->mesg_type,0);
+//set length to mesg_len
+
+mptr->mesg_len = n;
+return n;
+}
+
+
+----------------------------Client program---------------------------
+
+#include "mesgqu.h"
+/*Client of IPC*/
+void client(int readfd,int writefd)
+{
+	size_t len,n;
+	char buff[MAXLINE];
+	printf("\nEnter the filename:");
+	fgets(buff,MAXLINE,stdin);
+	len = strlen(buff);
+	if (buff[len-1]='\n')
+	 len--;
+	//write to IPC
+	write (writefd,buff,len);
+	//read from the IPC
+
+	while ( (n=read(readfd,buff,10))>0)
+	      write(STDOUT_FILENO,buff,10);
+}
+
+
+int main()
+{
+
+	int readid,writeid;
+
+	writeid = msgget(MQ_KEY1,0);
+	readid  = msgget(MQ_KEY2,0);
+
+	client(readid,writeid);
+
+	msgctl(readid,IPC_RMID,NULL);
+	msgctl(writeid,IPC_RMID,NULL);
+
+   return 0;
+}
+
+/*-------------------------------Output------------------------------
+
+[root@localhost fifo]# ./msgclient
+
+Enter the filename:foo.txt
+This is a demo of IPC using messageQueues .
+
+*/
+

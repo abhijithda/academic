@@ -1,0 +1,3 @@
+ delete from password where admin_id='ABHIJITH' OR admin_id='MAHESH';
+
+delete from administrator where id='ABHIJITH' OR id='MAHESH';

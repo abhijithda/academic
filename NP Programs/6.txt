@@ -1,0 +1,117 @@
+/*	Name : ABHIJITH D.A.		Reg.no : 1PI01IS001
+
+B2>.	Write and execute a program to find sum given N elements
+	using message queues
+*/
+
+#include "header.h"
+#include "functions.h"
+/*server.cpp*/
+int main()
+{
+ struct sockaddr_in saddr, caddr;
+ int sockfd = mySocket(&saddr);
+ myBind(sockfd);
+ int clen=sizeof(caddr);
+ int c[20], c1[20], n, p, temp=0;
+ listen(sockfd,1);
+ int newsock=accept(sockfd, (struct sockaddr *)&caddr, (socklen_t *)&clen);
+ close(sockfd);
+ recv(newsockfd, c, sizeof(n), 0);
+ n=c[0];
+ cout<<"\nn = "<<n;
+ recv(newsockfd, c, sizeof(p), 0);
+ p=c[0];
+ cout<<"\np = "<<p;
+ for(int i=0; i<p; i++){
+  for(int j=0; j<(n/p); j++){
+   recv(newsockfd, c1, sizeof(int), 0);
+  c[j]=c1[0];
+ }
+  temp=0;
+  cout<<"\nData received from client : ";
+  for(int j=0;j<(n/p);j++){
+	 temp+=c[j];
+	  cout<<c[j]<<"\t";
+  }
+  cout<<"\nPartial sum = "<<temp;
+ c[0]=temp;
+ send(newsockfd, c,s izeof(temp), 0);
+ }
+ close(newsockfd);
+ return 0;
+}
+
+
+/*---------------------------Client Program-----------------------------
+
+/*client program*/
+#include "header.h"
+#include "functions.h"
+int main()
+{
+ struct sockaddr_in saddr;
+ int sockfd = mySocket(&saddr);
+ myBind(sockfd);
+ connect(sockfd, (struct sockfdaddr *)&saddr, sizeof(saddr));
+ int a[20], b[20], n, p, sum=0, temp, i, j, k, s, e;
+ cout<<"\nEnter the number of processes : "; cin>>p;
+ cout<<"\nEnter the size of the array : "; cin>>n;
+ a[0]=n;
+ send(sockfd, a, sizeof(n), 0);
+ a[0]=p;
+ send(sockfd, a, sizeof(p), 0);
+ cout<<"\nEnter the elements of the array : ";
+ accept_mat1D(a,n);
+s=0;e=n/p;
+ for(i=0; i<(n/p); i++)
+ {
+  cout<<"\ns = "<<s<<"  e = "<<e;
+  cout<<"\nValues being sent : ";
+  for(j=s,k=0; j<e; j++,k++){
+   b[0]=a[j];
+   send(sockfd, b, sizeof(int), 0);
+	  cout<<b[0]<<"\t";
+  }
+  recv(sockfd, b, sizeof(temp), 0);
+  sum+=b[0];
+  cout<<"\nPartial sum : "<<b[0];
+  s=e;e+=n/p;
+ }
+ cout<<"\nTotal Sum = "<<sum<<endl;
+ close(sockfd);
+ return 0;
+}
+
+
+/*-------------------------------Output------------------------------
+
+[root@localhost NPlab]# ./server&
+[1] 2787
+[root@localhost NPlab]# ./client
+Enter the number of processes : 3
+Enter the size of the array : 8
+Enter the elements of the array : 12
+1
+10
+-8
+15
+17
+21
+23
+s = 0  e = 2
+p = 3
+Data received from client : 12  1
+Values being sent : 12  1
+Partial sum : 13
+s = 2  e = 4
+Partial sum = 13
+Data received from client : 10  -8
+Values being sent : 10  -8
+Partial sum : 2
+Total sum = 15
+Partial sum = 2
+Data received from client : -8  -8
+ Total Sum=79 
++  Done                    ./server
+*/

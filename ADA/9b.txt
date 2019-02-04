@@ -1,0 +1,140 @@
+/*	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+9b>.	Write a program to implement traveling salesperson problem,
+	using dynamic programming, for minimum cost tour.
+*/
+
+
+#include<stdio.h>
+#include<conio.h>
+#define MAX 10
+#define INF 9999
+
+struct node
+{
+	int cost;
+	int path[MAX];
+};
+
+typedef struct node tour;
+
+int cost[MAX][MAX],n;
+
+tour tsp(int i,int visited[])
+{
+	tour min,temp;
+	int j,empty=1;
+
+	min.cost=INF;
+	visited[i]=1;
+
+	for(j=1;j<=n;j++)
+	{
+		if(!visited[j])
+		{
+			empty=0;
+			temp=tsp(j,visited);
+			if(temp.cost + cost[i][j] < min.cost)
+			{
+				min=temp;
+				min.cost=temp.cost+cost[i][j];
+				min.path[i]=j;
+			}
+		}
+	}
+	if(empty)
+	{
+		min.cost=cost[i][1];
+		min.path[i]=1;
+	}
+	visited[i]=0;
+	return min;
+}
+
+
+void main()
+{
+	int i,j,visited[MAX];
+	tour best;
+
+	clrscr();
+
+	printf("\n Enter the number of cities : ");
+	scanf("%d",&n);
+
+	printf("\n Enter the cost adjacency matrix.(Negative values means no path.)\n");
+	for(i=1;i<=n;i++)
+		for(j=1;j<=n;j++)
+		{
+			scanf("%d",&cost[i][j]);
+			if(cost[i][j]<0)
+				cost[i][j]=INF;
+		}
+
+	for(i=1;i<=n;i++)
+		visited[i]=0;
+
+	best = tsp(1,visited);
+
+	if(best.cost != INF)
+	{
+		printf("\n The Optimal cost is %d\n",best.cost);
+		i=1;
+		printf("\n The Optimal path is \n\t %d",i);
+		do
+		{
+			i=best.path[i];
+			printf("\t %d",i);
+		}while(i!=1);
+	}
+	else
+		printf("\n No tour possible.");
+
+	getch();
+}
+
+
+/*---------------------------Outputs--------------------------
+
+1>.
+ Enter the number of cities : 3
+
+ Enter the cost adjacency matrix.(Negative values means no path.)
+-1 4 39
+2 -2 2
+-9 2 -12
+
+ The Optimal cost is 43
+
+ The Optimal path is
+         1       3       2       1
+
+2>.
+ Enter the number of cities : 5
+
+ Enter the cost adjacency matrix.(Negative values means no path.)
+-1 2 1 1 -1
+2 -1 1 3 2
+1 1 -1 -1 1
+1 3 -1 -1 1
+-1 2 1 1 -1
+
+ The Optimal cost is 6
+
+ The Optimal path is
+         1       2       3       5       4       1
+
+3>.
+
+ Enter the number of cities : 5
+
+ Enter the cost adjacency matrix.(Negative values means no path.)
+-1 2 -1 1 -1
+2 -1 -1 3 2
+-1 -1 -1 -1 1
+1 3 -1 -1 -1
+-1 2 1 -1 -1
+
+ No tour possible.
+
+*/

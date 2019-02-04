@@ -1,0 +1,162 @@
+/*	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+7a>.	Write a program to implement job scheduling with deadlines
+	problem using greedy algorithm.
+*/
+
+#include<stdio.h>
+#include<conio.h>
+#define MAX 10
+
+void sort(int t[],int p[],int n)
+{
+	int i,j,temp;
+//Initializing.
+	for(i=1;i<=n;i++)
+		t[i]=i;
+	for(i=1;i<=n;i++)
+		for(j=1;j<n;j++)
+		{
+			if(p[t[j]] < p[t[j+1]])
+			{
+				temp=t[j];
+				t[j]=t[j+1];
+				t[j+1]=temp;
+			}
+		}
+}
+
+
+jobs(int dead[],int p[],int n,int dead_time,int x[])
+{
+	int t[MAX],i,profit=0,cur_time,flag;
+
+//Initialize solution array.
+	for(i=1;i<=n;i++)
+		x[i]=0;
+
+//Sort in descending order of profit p[] and store indexes in t[].
+	sort(t,p,n);
+
+	cur_time=dead_time;
+	while(cur_time!=0)
+	{
+		flag=0;
+		for(i=1;i<=n;i++)
+			if(dead[t[i]]==cur_time && !x[t[i]])
+			{
+				flag=1;
+				x[t[i]]=1;
+				cur_time--;
+				profit+=p[t[i]];
+//Begin again from start of sorted array of profit.
+				break;
+			}
+//The total (current) time may be more. (To get out of while loop.)
+		if(flag==0)
+			cur_time--;
+	}
+	return profit;
+}
+
+
+void main()
+{
+	int n,dead[MAX],p[MAX],i,tot_time,x[MAX],profit;
+	clrscr();
+
+	printf("\n Enter the number of jobs : ");
+	scanf("%d",&n);
+
+	printf("\n Enter the time limits array.\n");
+	for(i=1;i<=n;i++)
+		scanf("%d",&dead[i]);
+
+	printf("\n Enter the profit array.\n");
+	for(i=1;i<=n;i++)
+		scanf("%d",&p[i]);
+
+	printf("\n Enter the total time : ");
+	scanf("%d",&tot_time);
+
+	profit=jobs(dead,p,n,tot_time,x);
+
+	printf("\n The Optimal profit obtained is %d \n",profit);
+
+	printf("\n The Solution vector is \n");
+	for(i=1;i<=n;i++)
+		printf("\t %d ",x[i]);
+
+	getch();
+}
+
+
+/*------------------------Outputs----------------------
+
+1>.
+ Enter the number of jobs : 5
+
+ Enter the time limits array.
+2 1 3 1 2
+
+ Enter the profit array.
+6 3 2 8 9
+
+ Enter the total time : 3
+
+ The Optimal profit obtained is 19
+
+ The Solution vector is
+         0       0       1       1       1
+
+2>.
+
+ Enter the number of jobs : 4
+
+ Enter the time limits array.
+2 1 2 1
+
+ Enter the profit array.
+1 9 8 3
+
+ Enter the total time : 2
+
+ The Optimal profit obtained is 17
+ The Solution vector is
+         0       1       1       0
+
+3>.
+
+ Enter the number of jobs : 4
+
+ Enter the time limits array.
+1 2 1 2
+
+ Enter the profit array.
+1 6 1 3
+
+ Enter the total time : 3
+
+ The Optimal profit obtained is 7
+
+ The Solution vector is
+         1       1       0       0
+
+4>.
+
+ Enter the number of jobs : 4
+
+ Enter the time limits array.
+ 2 1 2 1
+
+ Enter the profit array.
+ 1 9 8 3
+
+ Enter the total time : 9
+
+ The Optimal profit obtained is 17
+
+ The Solution vector is
+         0       1       1       0
+
+

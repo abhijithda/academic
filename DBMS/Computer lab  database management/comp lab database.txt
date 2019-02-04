@@ -1,0 +1,78 @@
+create table lab
+(
+lab_name  varchar2(20) PRIMARY KEY,
+dept varchar2(5),
+no_of_systems number(2)
+);
+
+create table student
+(
+reg_no	varchar2(10)	PRIMARY KEY,
+name	varchar2(20)	not null,
+sem	number(1),
+batch_name	varchar2(5),
+branch	varchar2(5),
+tot_hrs_worked number(3)	default '0'
+);
+
+create table administrator
+(
+name	varchar2(20)	not null,
+id	varchar2(10)	references password(user_id)
+);
+
+create table password
+(
+name	varchar2(20)	not null,
+user_id	varchar2(10)	PRIMARY KEY,
+passwd	varchar2(20)
+);
+
+CREATE TABLE reservation
+(
+user_id	varchar2(10)	NOT NULL,
+sys_no	VARCHAR2(5),
+res_date	DATE,
+status varchar2(4)
+);
+
+CREATE TABLE history
+(
+user_id	varchar2(10)	REFERENCES student (reg_no),
+user		varchar2(20),
+lab_name	varchar2(20)	REFERENCES lab (lab_name),
+sys_no	varchar2(5) REFERENCES system (system_no),
+login		DATE,
+logout	DATE
+);
+
+
+create table time_table
+(
+day	varchar2(10),
+start_time	DATE,
+end_time	DATE,
+batch varchar2(5),
+incharge varchar2(20)
+);
+
+create table system
+(
+system_no	varchar2(5)	PRIMARY KEY,
+lab_name	varchar2(20)	REFERENCES lab(lab_name),
+processor	varchar2(20),
+mother_board	varchar(20),
+Pr_mem	number(10),
+Se_mem	number(10),
+fl_drive	varchar(20),
+cd_drive	varchar(20),
+cdr_drive	varchar(20),
+mon_size	number(2),
+mon_type	varchar(20),
+key_board	varchar(20),
+mouse		varchar(20),
+Internet	number,
+printer	number,
+value		number(10),
+status	varchar2(20)
+);

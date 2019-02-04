@@ -1,0 +1,45 @@
+#	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+#7b>.	Write an awk script to delete duplicated lines a text
+#	file. The order of the original lines must remain 
+#	unchanged.
+
+
+BEGIN {
+	printf "\nThe file contents after deleting duplicate lines will be\n\n"
+}
+{
+	line[no++]=$0
+}
+END {
+	for(i=0;i<=no;i++) {
+		flag=1
+		for(j=0;j<i;j++)
+			if(line[i]==line[j])
+				flag=0
+			if(flag==1)
+				print line[i]
+	}
+}
+
+#---------------------------Outputs-----------------------
+
+#	[root@localhost unix]# cat 7b_file
+#	abhijith is a good boy.
+#	hello world
+#	hello world
+#	abhijith is a good boy.
+#	hello universe
+#	hello world.
+
+
+#	[root@localhost unix]# awk -f 7bp.awk 7b_file
+#
+#	The file contents after deleting duplicate lines will be
+#
+#	abhijith is a good boy.
+#	hello world
+#	hello universe
+#	hello world.
+
+  

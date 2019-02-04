@@ -1,0 +1,92 @@
+create table lab
+(
+lab_name  varchar2(10) PRIMARY KEY,
+dept varchar2(5),
+no_of_sys varchar2(5)	default '0'
+);
+
+create table student
+(
+reg_no	varchar2(10)	PRIMARY KEY,
+name	varchar2(20)	NOT NULL,
+sem	number(1),
+batch	varchar2(5),
+branch	varchar2(5)
+);
+
+create table administrator
+(
+name	varchar2(20) NOT NULL,
+id	varchar2(10) PRIMARY KEY,
+lab	varchar2(10) references lab(lab_name),
+passwd	varchar2(20) DEFAULT	'ADMIN'
+);
+
+create table password
+(
+student_id	varchar2(10)	unique
+	references student(reg_no),
+login_times	number(5)	DEFAULT 0,
+passwd	varchar2(20)
+);
+
+create table time_table
+(	
+day		varchar2(10),
+start_time	varchar2(10),
+end_time 	VARCHAR2(10),
+lab		varchar2(10)	references lab(lab_name),
+batch 		varchar2(5),
+incharge 	varchar2(20),
+primary key(start_time,end_time,day,lab)
+);
+
+create table system
+(
+sys_no	varchar2(20)	PRIMARY KEY,
+lab		varchar2(10)	REFERENCES lab(lab_name),
+processor	varchar2(20),
+mother_board	varchar2(20),
+Pr_mem		number(10),
+Se_mem		number(10),
+fl_drive	varchar2(20),
+cdr_drive	varchar2(20),
+cdrw_drive	varchar2(20),
+mon_size	varchar2(20),
+mon_type	varchar2(20),
+key_board	varchar2(40),
+mouse		varchar2(20),
+Internet	varchar2(20),
+printer		varchar2(20),
+value		number(10),
+status		varchar2(20)
+);
+
+CREATE TABLE reservation
+(
+user_id	varchar2(10)	REFERENCES student(reg_no),
+name	varchar2(20),
+sys_no	VARCHAR2(20)	REFERENCES system(sys_no),
+res_time varchar2(10),
+res_date timestamp	default sysdate,
+primary key (sys_no,res_time)
+);
+
+ CREATE TABLE history
+ (
+ user_id varchar2(10),
+ name  varchar2(20),
+ lab_name varchar2(10) REFERENCES lab (lab_name),
+ sys_no varchar2(20) REFERENCES system (sys_no),
+ login  varchar2(40),
+ logout varchar2(40)
+ );
+
+create view Stu_View as 
+ select name,reg_no,sem,batch,branch,login_times
+ from student,password 
+ where student.reg_no = password.student_id;
+
+create view Admin_View as
+ select name,id,lab from administrator;
+

@@ -1,0 +1,117 @@
+/*	Name : ABHIJITH D.A.	Reg.no : 1PI01IS001
+
+3a>.	Write a C program to find maximum & minimum in a list size 'n'
+	using recursive maximum algorithm.
+*/
+
+#include<iostream.h>
+#include<conio.h>
+
+int const MAX=20;
+
+void max_min(int a[],int i,int j,int &max,int &min)
+{
+ if(i==j)		//One element or leaf.
+ {
+  if(a[i]>a[max])
+   max=i;
+  if(a[i]<a[min])
+   min=i;
+ }
+ else if(i==j+1)	//Two elements or leaves.
+ {
+  if(a[i]<a[j])
+   max=j,min=i;
+  else
+   max=i,min=j;
+ }
+ else
+ {
+  int mid;
+  mid=(i+j)/2;
+  max_min(a,i,mid,max,min);		//Recursive calls.
+  max_min(a,mid+1,j,max,min);
+  if(a[i]>a[i+1])
+  {
+   if(a[i]>a[max])
+    max=i;
+   if(a[i+1]<a[min])
+    min=i;
+  }
+  else
+  {
+   if(a[i+1]>a[max])
+    max=i+1;
+   if(a[i]<a[min])
+    min=i+1;
+  }
+ }
+}
+
+
+void main()
+{
+ int a[MAX],n,max,min;
+ clrscr();
+ cout<<"\n\t Welcome to program of finding Max & Min elements in a list.";
+ cout<<"\n\t Enter the number of elements in the list:\t";
+ cin>>n;
+ cout<<"\n\t Enter the list.\n\t";
+ for(int i=0;i<n;i++)
+  cin>>a[i];
+ max_min(a,0,n-1,max,min);
+ cout<<"\n\t The Maximum element = "<<a[max]<<".\n\t The Minimum element = "<<
+ a[min]<<".\n";
+ getch();
+}
+
+
+----------------------------Outputs-----------------------
+
+1>.
+
+         Welcome to program of finding Max & Min elements in a list.
+         Enter the number of elements in the list:	5
+
+         Enter the list.
+	2 8 3 5 1
+
+         The Maximum element = 8.
+         The Minimum element = 1.
+
+
+2>.
+
+         Welcome to program of finding Max & Min elements in a list.
+         Enter the number of elements in the list:	2
+
+         Enter the list.
+	0 1
+
+         The Maximum element = 1.
+         The Minimum element = 0.
+
+3>.
+
+         Welcome to program of finding Max & Min elements in a list.
+         Enter the number of elements in the list:      4
+
+         Enter the list.
+        1 2 8 9
+
+         The Maximum element = 9.
+         The Minimum element = 1.
+
+
+4>.
+
+        Welcome to program of finding Max & Min elements in a list.
+        Enter the number of elements in the list:      1
+
+        Enter the list.
+       13
+
+        The Maximum element = 13.
+        The Minimum element = 13.
+
+

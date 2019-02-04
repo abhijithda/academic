@@ -1,0 +1,68 @@
+#	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+#15b>.	Write a AWK program to print the transpose of a matrix.
+#	For example assume the program is named revtab. Then,
+#	$cat mat1
+#	A B C
+#	D E F
+#	G H I
+#	$cat mat2
+#	A D G
+#	B E F
+#	C F I
+
+
+BEGIN 	{
+		i=1;
+	}
+
+{
+	row[i++]=$0;
+}
+
+END	{
+		print "\nThe Transpose of a matrix is\n"
+		for(k=1;k<=NF;k++)
+		{
+			for(i=1;i<=NR;i++)
+			{
+				split(row[i],ele," ");
+				printf("\t %s",ele[k]);
+				}
+			print "\n";
+		}
+	}
+
+#------------------------------Outputs--------------------------
+
+#1>.
+
+#[root@localhost unix]# cat mat
+#1 2 3
+#4 5 6 
+#7 8 9
+#[root@localhost unix]# awk -f 15b.awk mat
+#
+#The Transpose of a matrix is
+#
+#	 1	 4	 7
+#
+#	 2	 5	 8
+#
+#	 3	 6	 9
+#
+#[root@localhost unix]# cat > mat
+#A	B	C
+#D	E	F
+#G	H	I
+#J	K 	L
+#[root@localhost unix]# awk -f 15b.awk mat
+#
+#The Transpose of a matrix is
+#
+#	 A	 D	 G	J
+#
+#	 B	 E	 H	K
+#
+#	 C	 F	 I	L
+#

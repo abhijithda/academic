@@ -1,0 +1,45 @@
+#	Name : ABHIJITH 	Reg.No : 1PI01IS001
+
+# 4a>.	Write a shell script that accepts path name and creates all
+#	the components in that path name as directories. For example,
+#	if the script is named mpc, then the command mpc a/b/c/d
+#	should create directories a,a/b,a/b/c and a/b/c/d.
+	
+
+if [ $# -ne 1 ]
+then 
+ echo " Wrong arguments."
+fi
+IFS='/'
+for x in $*
+do
+ if [ -d $x ]
+ then 
+  cd $x
+ else if [ -f $x ]
+ then 
+  echo File : \"$x\" exits, so you can\'t create a directory : \"$x\".
+  exit
+ else
+  mkdir $x
+  cd $x
+ fi
+fi
+done
+
+.-------------------------Outputs-------------------------------
+.
+.1>.	[root@localhost unix]# sh 4a.sh a/b/c/d ; ls -R a
+
+.	a/b:
+
+.	a/b/c:
+
+.	a/b/c/d:
+
+.2>.	[root@localhost unix]# sh 4a.sh
+.	 Wrong arguments.
+
+.3>.	[root@localhost unix]# sh 4a.sh temp1/a/da/ada
+.	File : "temp1" exits, so you can't create a directory : "temp1".
+

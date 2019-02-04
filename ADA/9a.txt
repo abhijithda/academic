@@ -1,0 +1,89 @@
+/*	Name : ABHIJITH D.A.	Reg.No :	1PI01IS001
+
+9a>.	Write a program to sort the elements of a list of size 'n'
+	using selection sort that uses partition method of Hoare.
+*/
+
+#include<stdio.h>
+#include<conio.h>
+
+int sel_sort(int a[],int index,int n)
+{
+	int i,j,pivot,temp;
+	i=0;
+	j=n;
+	while(i<j)
+	{
+		while(a[i]<a[index])
+			i++;
+		while(a[j]>a[index])
+			j--;
+		if(i<j)
+		{
+			temp=a[i];
+			a[i]=a[j];
+			a[j]=temp;
+		}
+	}
+	return j;
+}
+
+void hoare(int a[],int n)
+{
+	int i,pivot,temp;
+	for(i=0;i<n;i++)
+	{
+		pivot=sel_sort(a,i,n-1);
+		temp=a[pivot];
+		a[pivot]=a[i];
+		a[i]=temp;
+	}
+}
+
+
+void main()
+{
+	int i,j,n,a[10];
+
+	clrscr();
+
+	printf("\n Enter the number of elements : ");
+	scanf("%d",&n);
+
+	printf("\n Enter the elements.\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+
+	hoare(a,n);
+
+	printf("\n The sorted elements in order using Hoare method is\n");
+	for(i=0;i<n;i++)
+		printf("\t %d ",a[i]);
+
+	getch();
+}
+
+
+/*--------------------------Outputs----------------------
+
+1>.
+
+ Enter the number of elements : 6
+
+ Enter the elements.
+9 3 5 7 12 4
+
+ The sorted elements in order using Hoare method is
+         3       4       5       7       9       12
+
+2>.
+
+ Enter the number of elements : 6
+
+ Enter the elements.
+-99     12      24      99      45      65
+
+ The sorted elements in order using Hoare method is
+         -99     12      24      45      65      99
+
+*/

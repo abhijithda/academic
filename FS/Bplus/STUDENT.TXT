@@ -1,0 +1,13 @@
+1PI01IS042|MAHESH|#111,Samrhuddhi,GiriNager|6|ise
+123|pes|bsk|1-8|all
+1PI01IS002|ABHIJITH|KORMANGALA|6|ISE
+1PI98ME001|ABHISHEK|46|MECH|ISE
+1PI01IS123|abhijith|jhasf asdf;kjlas fa|6|ise
+ADF|ABHIJITH|#46,19thMain,B.S.K.|6|ISE
+1PI05IS001|ABHIJITH D.A.|#46,19th Main,B.S.K. Ist Stage,II Block,6|6|Information Science
+1PI01IS001|abhijith|dadaga|6|ise
+1PI10IS001|abhijith|dadaga|6|ise
+1PI01IS0|abhijith|dadaga|6|ise
+1234567890|abcdefghjklmnopqrstuv|wxyzABCDEFGHIJKLMNOPQRSTUVWXYZ|12345678|ABCEIMPRS
+091|abhijith|dadaga|6|
+99999|MAHABHI|#44 , #111|6|Ise

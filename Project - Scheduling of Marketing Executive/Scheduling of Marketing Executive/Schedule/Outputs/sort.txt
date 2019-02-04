@@ -1,0 +1,6 @@
+
+
+The Sorted Array for each problem instance is as follows
+
+
+0	1	1	1	1	1	

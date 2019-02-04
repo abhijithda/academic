@@ -1,0 +1,164 @@
+/*	Name : ABHIJITH D.A.		Reg.no : 1PI01IS001
+
+B3>.	Write and execute a program to sort given N elements using 
+	message Queues
+*/
+
+
+#include "header.h"
+#include "functions.h"
+int main()
+{
+  struct sockaddr_in saddr, caddr;
+  struct sockaddr_in saddr;
+  int sockfd = mySocket(&saddr);
+  myBind(sockfd);
+ int clen=sizeof(caddr);
+ listen(sockfd, 1);
+ int newsockfd=accept(sockfd, (struct sockaddr *)&caddr, (sockfdlen_t *)&clen);
+ close(sockfd);
+ int a[20], b[20], n, p, i, j;
+ recv(newsockfd, a, sizeof(p), 0);
+ p=a[0];
+ recv(newsockfd, a, sizeof(n), 0);
+ n=a[0];
+ for(i=0; i<p; i++){
+  for(j=0; j<(n/p); j++){
+   recv(newsockfd, b, sizeof(int), 0);
+	  a[j]=b[0];
+  }
+  cout<<"\nArray elements received : ";
+  display_mat1D(a,n/p);
+  sort(n/p, a);
+  cout<<"\nSorted subgroup : ";
+  display_mat1D(a,n/p);
+  for(j=0; j<(n/p); j++){
+	  b[0]=a[j];
+   send(newsockfd, b, sizeof(int), 0);
+  }
+ }
+ close(newsockfd);
+ return 0;
+}
+
+/*---------------------------Client Program-----------------------------
+
+#include "header.h"
+#include "functions.h"
+int main()
+{
+  struct sockaddr_in saddr;
+  struct sockaddr_in saddr;
+  int sockfd = mySocket(&saddr);
+  myBind(sockfd);
+  connect(sock,(struct sockfdaddr *)&saddr,sizeof(saddr));
+  int a[20], b[20], i, j, k, n, p, s, e;
+  cout<<"\nEnter the number of processes : ";cin>>p;
+ a[0]=p;
+ send(sockfd, a, sizeof(p), 0);
+ cout<<"\nEnter the number of elements : ";cin>>n;
+ a[0]=n;
+ send(sockfd, a, sizeof(n), 0);
+ cout<<"\nEnter the elements of the array : ";
+ accept_mat1D(a,n);
+ s=0; e=n/p;
+ for(i=0; i<p; i++) {
+  for(j=0,k=s; j<(n/p); j++,k++){
+   b[0]=a[k];
+  send(sockfd, b, sizeof(int), 0);
+  }
+  for(j=0,k=s; j<(n/p); j++,k++){
+  recv(sockfd, b, sizeof(int), 0);
+   a[k]=b[0];
+  }
+  cout<<"\nThe sorted subgroup :\n";
+  display_mat1D(a,s,e);
+  s=e; e+=n/p;
+ }
+ cout<<"\nThe partly sorted array :\n";
+ display_mat1D(a,0,n);
+ sortjoin(n, p, a, b);
+ cout<<"\nThe final sorted array :\n";
+ display_mat1D(b,0,n);
+ close(sockfd);
+ return 0;
+}
+
+void sortjoin(int n, int p, int a[], int b[])
+{
+ int i, j, k, c[10], c1[10], temp, pos;
+ temp=0;
+ cout<<"\nContents of the counter array : ";
+ for(i=0; i<p; i++)
+ {
+  c[i]=temp;
+  cout<<c[i]<<"\t";
+  temp+=n/p;
+  c1[i]=c[i];
+ }
+ temp=a[0];
+ pos=0;
+ for(i=0; i<n; i++)
+ {
+  for(j=0; j<p; j++)
+  {
+   if(c1[j] <= (c[j]+(n/p)))
+	  {
+	   if(temp > a[c1[j]])
+	   {
+	    pos=j;
+	    temp=a[c1[j]];
+	   }
+	  }
+  }
+  b[i]=temp;
+  temp=9999;
+  c1[pos]+=1;
+ }
+}
+
+/* Function to display the elements */
+void display(int s, int e, int a[])
+{
+ for(int i=s; i<e; i++)
+   cout<<a[i]<<"\t";
+}
+
+
+/*-------------------------------Output------------------------------
+
+[root@localhost NPlab]# ./server&
+[1] 2813
+[root@localhost NPlab]# ./client
+
+Enter the number of processes : 3
+
+Enter the number of elements : 8
+
+Enter the elements of the array : 12
+11
+-9
+-8
+7
+6
+1
+2
+
+Array elements received : 12    11
+
+The sorted subgroup :
+Sorted subgroup : 11    12
+Array elements received : -9    -8
+11      12
+The sorted subgroup :
+Sorted subgroup : -9    -8
+Array elements received : 7     6
+Sorted subgroup : 6     7       -9      -8
+The sorted subgroup :
+6       7
+The partly sorted array :
+11      12      -9      -8      6       7       1       2
+Contents of the counter array : 0       2       4
+The final sorted array :
+-9      -8      1       2     6        7       11      12      [1]+  Done                    ./server
+*/

@@ -1,0 +1,42 @@
+ insert into student values ('1pi01is001','ABHIJITH',6,'IS6a1','ISE');
+ insert into student values ('1pi01is042','Mahesh',6,'IS6a1','ISE');
+ insert into student values ('1pi01is005','Anand Krihnan',6,'IS6a1','ISE');
+ insert into student values ('1pi01is022','Deepak',6,'IS6a1','ISE');
+ insert into student values ('1pi98me001','Abhishek D.',6,'me8a1','ME');
+ insert into student values ('1111111111','Aaaaaaaaaaaaa.',1,'bbbb','mmm');
+ insert into student values ('1','A.',1,'bb','m',1);
+
+
+
+	insert into administrator (name,id,lab)values('admin','admin','ise');
+	insert into administrator (name,id,lab)values('abhijith','master','ise');
+	insert into administrator (name,id,lab)values('mahesh','mind','ise');
+
+
+insert into password (admin_id,passwd) values('admin','admin');
+insert into password (admin_id,passwd) values('master','abhi');
+insert into password (admin_id,passwd) values('mind','mah');
+
+	insert into password (student_id,passwd,login_times) values('1pi01is001','abhijith',0);
+	insert into password (student_id,passwd) values ('1pi01is042','mahesh');
+
+
+insert into timetable values ('Monday','','','ise7a1','ramesh');
+
+ 	insert into lab values ('ISE1','ISE','0');
+	insert into lab values ('MCA1','MCA','0');
+	insert into lab values ('CSE1','CSE','0');
+	insert into lab values ('ISE2','ISE','0');
+	insert into lab values ('MCA2','MCA','0');
+	insert into lab values ('CSE2','CSE','0');
+
+insert into system (sys_no,lab,processor,mother_board,pr_mem,se_mem,fl_drive,cdr_drive,cdrw_drive,mon_size,mon_type,key_board,mouse,internet,printer,value,status) values ('sys','lab','pro','mb',40,256,'fd','cdr','cdrw',17,'mtt','kb','mou',1,0,42500,'stat');
+insert into system (sys_no,lab,processor,mother_board,pr_mem,se_mem,fl_drive,cdr_drive,cdrw_drive,mon_size,mon_type,key_board,mouse,internet,printer,value,status) values ('sys123','lab','pro','mb',40,256,'fd','','cdrw',17,'mtt','kb','mou',1,0,42500,'stat');
+insert into system (sys_no,lab,processor,mother_board,pr_mem,se_mem,fl_drive,cdr_drive,cdrw_drive,mon_size,mon_type,key_board,mouse,internet,printer,value,status) values ('sys12345','abhi','p4','mb',40,256,'fd','','cdrw',17,'mtt','kb','mou',1,0,42500,'stat');
+insert into system (sys_no,lab,processor,mother_board,pr_mem,se_mem,fl_drive,cdr_drive,cdrw_drive,mon_size,mon_type,key_board,mouse,internet,printer,value,status) values ('abhi12345','abhi','p4','mb',40000,256,'fd','','cdrw',17,'mtt','kb','mou',1,0,42500,'stat');
+insert into system (sys_no,lab,processor,mother_board,pr_mem,se_mem,fl_drive,cdr_drive,cdrw_drive,mon_size,mon_type,key_board,mouse,internet,printer,value,status) values ('ise12345','ise','p4','mb',40000,256,'fd','','cdrw',17,'mtt','kb','mou',1,0,42500,'stat');
+
+
+	insert into reservation (user_id,name,sys_no,res_time,res_date) values ('1pi01is001','abhijith d.a.','LAB11234','7am',sysdate);
+	insert into reservation (user_id,name,sys_no,res_time,res_date) values ('1pi01is001','abhijith d.a.','LAB1123','7am',sysdate);
+	insert into reservation (user_id,name,sys_no,res_time,res_date) values ('1pi01is042','mahesh','LAB11234','6pm',sysdate);

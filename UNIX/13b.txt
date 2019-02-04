@@ -1,0 +1,33 @@
+#	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+#13b>.	Write an awk script to read the /etc/passwd file and
+#	list users who have dulicate id numbers.
+
+BEGIN	{
+		FS=":";
+		RS="\n";
+	}
+
+{
+	flag=0;
+	for(i=0;i<id;i++)
+	{
+		if(userid[i]==$3)
+		{
+			printf("\n Duplicate user id : "$3);
+			printf("\t Username : "$1);
+			printf"\n"
+			flag=1;
+		}
+	}
+	if(!flag)
+		userid[id++]=$3;
+}
+
+#-----------------------------Outputs----------------------------
+
+#	[root@localhost unix]# awk -f 13b.awk /etc/passwd
+
+#	 Duplicate user id : 500	 Username : abhi
+
+#	[root@localhost unix]#

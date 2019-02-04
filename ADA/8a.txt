@@ -1,0 +1,124 @@
+/*	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+8a>.	Write a program to implement 'n'-Queens problem.
+*/
+
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#define MAX 10
+
+
+place(int c[],int r)
+{
+	int i;
+	for(i=0;i<r;i++)
+		if ( c[r]==c[i] || ( abs(i-r) == abs(c[i]-c[r]) ) )
+			return 0;
+	return 1;
+}
+
+
+void display(int c[MAX],int n)
+{
+	int i,j;
+	for(i=0;i<n;i++)
+	{
+		printf("\n");
+		for(j=0;j<n;j++)
+			if( j == c[i] )
+				printf("\t Q ");
+			else
+				printf("\t - ");
+		printf("\n");
+	}
+}
+
+void Queens(int n)
+{
+	int c[MAX],r;
+
+	c[0]=-1;
+	r=0;
+
+	while(r>=0)
+	{
+		c[r]++;
+		while(c[r]<n && !place(c,r))
+			c[r]++;
+
+		if(c[r]<n)
+		{
+			if(r==n-1)
+			{
+				printf("\n The Placement of queens so they don't attack.\n");
+				display(c,n);
+				return;
+			}
+			else
+			{
+				r++;
+				c[r]=-1;
+			}
+		}
+		else
+			r--;
+	}
+}
+
+
+void main()
+{
+	int n;
+	clrscr();
+
+	printf("\n Enter the number of Queens : ");
+	scanf("%d",&n);
+
+	Queens(n);
+
+	getch();
+}
+
+
+/*--------------------------------Outputs--------------------------
+
+1>.
+
+ Enter the number of Queens : 8
+
+ The Placement of queens so they don't attack.
+
+         Q       -       -       -       -       -       -       -
+
+         -       -       -       -       Q       -       -       -
+
+         -       -       -       -       -       -       -       Q
+
+         -       -       -       -       -       Q       -       -
+
+         -       -       Q       -       -       -       -       -
+
+         -       -       -       -       -       -       Q       -
+
+         -       Q       -       -       -       -       -       -
+
+         -       -       -       Q       -       -       -       -
+
+2>.
+
+ Enter the number of Queens : 5
+
+ The Placement of queens so they don't attack.
+
+         Q       -       -       -       -
+
+         -       -       Q       -       -
+
+         -       -       -       -       Q
+
+         -       Q       -       -       -
+
+         -       -       -       Q       -
+
+*/

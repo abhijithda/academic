@@ -1,0 +1,79 @@
+#	Name : ABHIJITH D.A. 	Reg.No : 1PI01IS001
+
+#15a>.	Write a shell script to do the following :
+#	It accepts two file names as arguments, sort both
+#	to temporary files, merges the files to the standard 
+#	output and finally deletes the temporary files.
+
+if [ $# -ne 2 ]
+then
+ 	echo "Invalid number of arguments."
+	exit
+fi
+if [ -f $1 ]
+then
+	if [ -f $2 ]
+	then
+		sort $1 -o t1
+		sort $2 -o t2
+	else
+		echo "$2 is not a file."
+		exit
+	fi
+else
+	echo "$1 is not a file."
+	exit
+fi
+sort -m t1 t2
+rm t1 t2
+
+#-------------------------Outputs----------------------
+
+#1>.	[abhi@localhost unix]$ sh 15a.sh abhi1 abhi2
+#
+#
+#	ABHIJITH
+#	ABHIJITH
+#	abhijith is staying in bangalore
+#	abhijith is studying in PESIT
+#	ABHISHEK
+#	CHIATRA MOHAN
+#	CHIRANTH MOHAN
+#	DARSHAN
+#	He has gone there for studying
+#	Hello 
+#	Hello 
+#	He stays in his Gradpa's house
+#	SOAN
+
+#2>.	[abhi@localhost unix]$ sh 15a.sh abhi 15a.sh
+#	abhi is not a file.
+
+#3>.	[abhi@localhost unix]$ sh 15a.sh a.out prnfiles
+#	prnfiles is not a file.
+
+
+#-----------------------------------------------------------
+
+#	The contents of the file abhi1 is as follows
+
+#	abhijith is studying in PESIT
+#	He stays in his Gradpa's house
+#	Hello 
+#	ABHIJITH
+
+#-----------------------------------------------------------
+
+#	The contents of the file abhi2 is as follows
+
+#	abhijith is staying in bangalore
+#	He has gone there for studying
+#
+#	Hello 
+#
+#	ABHIJITH
+#	ABHISHEK	
+#	DARSHAN
+#	SOAN
+#	CHIATRA MOHAN
+#	CHIRANTH MOHAN

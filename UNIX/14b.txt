@@ -1,0 +1,58 @@
+/*	Name : ABHIJITH D.A.	Reg.no : 1PI01IS001
+
+14b>.	Write a C program to print the device number for each
+	command-line argument. Additionaly if the argument refers
+	to a character specail file or a block special file,
+	its strdev value also is to be printed.
+*/
+
+#include<stdio.h>
+#include<sys/types.h>
+#include<sys/stat.h>
+
+int main(int argc,char *argv[])
+{
+ int i;
+ struct stat buf;
+ for(i=1;i<argc;i++)
+ {
+  printf("%s ",argv[i]);
+  if((lstat(argv[i],&buf)<0))
+  {
+   printf("lstat error. \n");
+   continue;
+  }
+  printf("dev=%d  %d",major(buf.st_dev),minor(buf.st_mode));
+  if((S_ISCHR(buf.st_mode)) || (S_ISBLK(buf.st_mode)) )
+  {
+   printf("\t(%s) rdev=  %d  %d",(S_ISCHR(buf.st_mode))?"character":"Block",
+          major(buf.st_rdev),minor(buf.st_rdev));
+  }
+  printf("\n");
+ }
+ exit(0);
+}
+
+/*---------------------------------Outputs-----------------------------
+
+1>.	[abhi@localhost unix]$ cc 14b.c
+
+	[abhi@localhost unix]$ ./a.out 1a.sh /dev/null /dev/fd0 /dev/tty
+
+	1a.sh dev=3  237
+
+	/dev/null dev=3  182	(character) rdev=  1  3
+
+	/dev/fd0 dev=3  176	(Block) rdev=  2  0
+
+	/dev/tty dev=3  182	(character) rdev=  5  0
+
+	[abhi@localhost unix]$ 
+
+2>.	[abhi@localhost unix]$ ./a.out aaaaaaa
+
+	aaaaaaa lstat error. 
+
+	[abhi@localhost unix]$ 
+
+*/

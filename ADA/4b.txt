@@ -1,0 +1,157 @@
+/*	Name : ABHIJITH D.A. 	Reg.No : 1PI01IS001
+
+4b>.	Using branch and bound Write a program to implement the
+	minimum cost travelling salesperson problem. Assume that
+	the cost matrix with regard to n cities is given and the
+	program should print the minimal tour.
+*/
+
+#include<stdio.h>
+#include<conio.h>
+#define NO_PATH 9999
+#define MAX 10
+
+
+//Arranging live nodes in descending order of cost.
+
+void sort(int arr[],int len)
+{
+	int i,j,temp;
+	for(i=0;i<len;i++)
+	{
+		for(j=len-1;j>i;j--)
+		{
+			if(arr[i]<arr[j])
+			{
+				temp=arr[i];
+				arr[i]=arr[j];
+				arr[j]=temp;
+			}
+		}
+	}
+}
+
+int cost[MAX][MAX],n;
+int best_path[MAX],cur_path[MAX];
+int visited[MAX];
+int best_c = NO_PATH,cur_c;
+int start_node =0;
+
+void tsp(int cur_node,int cur_c,int nodes_covered)
+{
+	int live_nodes[MAX];
+	int rem_cnt = 0;
+	int i,next_node;
+
+	if(cur_c > best_c)
+		return;
+
+	visited[cur_node]=1;
+	cur_path[nodes_covered]=cur_node;
+
+	if(nodes_covered == n-1)
+	{
+		cur_c+=cost[cur_node][start_node];
+		if(cur_c < best_c)
+		{
+			best_c = cur_c;
+			memcpy(best_path,cur_path,sizeof(int)* n);
+			return;
+		}
+	}
+
+
+	for(i=0;i<n;i++)
+		if(!visited[i] && cost[cur_node][i] != NO_PATH)
+			live_nodes[rem_cnt++]=i;
+
+	sort(live_nodes,rem_cnt);
+
+	for(i=0;i<rem_cnt;i++)
+	{
+		next_node = live_nodes[i];
+		tsp(next_node, cur_c + cost[cur_node][next_node], nodes_covered+1);
+		visited[next_node]=0;
+	}
+}
+
+void main()
+{
+	int i,j;
+	clrscr();
+
+	printf("\n Enter the number of cities : ");
+	scanf("%d",&n);
+
+	printf("\n Enter the cost adjacency matrix (with negative values for noedge).\n");
+	for(i=0;i<n;i++)
+		for(j=0;j<n;j++)
+		{
+			scanf("%d",&cost[i][j]);
+			if(cost[i][j] < 0)
+				cost[i][j] = NO_PATH;
+		}
+
+	tsp(start_node,0,0);
+
+	if(best_c != NO_PATH)
+	{
+		printf("\n The Optimal cost is %d\n",best_c);
+
+		printf("\n The Optimal path is \n");
+		for(i=0;i<n;i++)
+			printf("\t %d",best_path[i]+1);
+		printf("\t %d\n",start_node+1);
+	}
+	else
+		printf("\n No tour is possible.\n");
+
+	getch();
+}
+
+
+/*------------------------------Outputs-----------------------------
+
+1>.
+ Enter the number of cities : 5
+
+ Enter the cost adjacency matrix (with negative values for noedge).
+-1 2 1 1 -1
+2 -1 1 3 2
+1 1 -1 -1 1
+1 3 -1 -1 1
+-1 2 1 1 -1
+
+ The Optimal cost is 6
+
+ The Optimal path is
+         1       4       5       3       2       1
+
+2>.
+
+ Enter the number of cities : 3
+
+ Enter the cost adjacency matrix (with negative values for noedge).
+-2      23      1
+7       -9      5
+4       6       -1
+
+ The Optimal cost is 14
+
+ The Optimal path is
+         1       3       2       1
+
+3>.
+
+ Enter the number of cities : 5
+
+ Enter the cost adjacency matrix (with negative values for noedge).
+-1 2 -1 1 -1
+2 -1 -1 3 2
+-1 -1 -1 -1 1
+1 3 -1 -1 -1
+-1 2 1 -1 -1
+
+ No tour is possible.
+
+*/

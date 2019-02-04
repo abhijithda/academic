@@ -1,0 +1,89 @@
+/*	Name : ABHIJITH D.A.		Reg.no : 1PI01IS001
+
+A2>.	Write and execute a program to find sum given N elements using 
+	message queues
+
+*/
+
+#include <iostream.h>
+#include <sys/types.h>
+#include <sys/msg.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+/* Main Function */
+int main()
+{
+ int msgid=msgget((key_t)0x1, IPC_CREAT|0666);
+
+ struct 
+ {
+  long mtype;
+	 int mtext[20];
+	}buff,recvbuff;
+ 
+ buff.mtype=1;
+ recvbuff.mtype=1;
+ pid_t pid;
+ 
+ int a[20], i, j, k, n, p, s, e, sum=0;
+ cout<<"\nEnter the number of Processes: ";
+ cin>>p;
+ cout<<"\nEnter the number of Elements: ";
+ cin>>n;
+ cout<<"\nEnter the Elements....  ";
+ for(i=0; i<n; i++)
+  cin>>a[i];
+ s=0;
+ e=n/p;
+ sum=0;
+ 
+ for(i=0; i<p; i++)
+ {
+  pid=fork();
+  if(pid!=0)
+  {
+   for(j=s,k=0; j<e; j++,k++)
+	    buff.mtext[k]=a[j];
+	  msgsnd(msgid, &buff, 20, 0);
+  }
+  else
+  {
+   int temp=0;
+	  msgrcv(msgid, &recvbuff, 20, 1, 0);
+	  for(j=0; j<(n/p); j++)
+	    temp+=recvbuff.mtext[j];
+	  cout<<"\nPartial sum in child process : "<<temp;
+	  recvbuff.mtext[0]=temp;
+	  msgsnd(msgid, &recvbuff, 20, 0);
+  }
+  wait(0);
+  msgrcv(msgid, &buff, 20, 1, 0);
+  sum+=buff.mtext[0];
+  cout<<"\nPartial sum : "<<sum;
+  s=e;
+  e+=n/p;
+ }
+ cout<<"\nThe total sum is = "<<sum;
+ return 0;
+}
+
+
+/*-------------------------------Output------------------------------
+
+[root@pes Working]# ./sum
+Enter the number of Processes:2
+Enter the number of Elements: 5
+Enter the Elements......
+90
+11
+120
+67
+123
+Partial sum: 221
+Partial sum: 190
+Total sum: 411
+root@pes Working]# ./sum
+Enter the number of Elements: -9
+Please enter the number of elements correctly
+*/

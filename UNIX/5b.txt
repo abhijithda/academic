@@ -1,0 +1,69 @@
+/*	Name : ABHIJITH D.A.	Reg.no : 1PI01IS001
+
+ 5b>.	Write a C program which accepts a valid directory name 
+	as a command line argument and list all the files in 
+	the given directory as well as all the files in the 
+	subsequent subdirectories. 
+	( The solution can be recursive or non-recursive. )
+*/
+
+#include<stdio.h>
+#include<ftw.h>
+#include<unistd.h>
+
+int myfun(const char *pathname,const struct stat *statptr,int type);
+
+int main(int argc,char *argv[])
+{
+ exit(nftw(argv[1],myfun,0,0));
+}
+
+int myfun(const char *pathname,const struct stat *statptr,int type)
+{
+ switch(type)
+ {
+  case FTW_F :  printf("\t File : %s\n",pathname);
+	        break;
+  case FTW_D :  printf("\t Directory : %s\n",pathname);
+		break;
+  default    :  printf("\n\t Invalid File format.\n");
+		break;
+ }
+ return 0;
+}
+
+/*------------------------------Outputs--------------------------
+
+
+[abhi@localhost unix]$ ./a.out .
+	 Directory : .
+	 File : ./11b.c
+	 File : ./14b.txt
+	 File : ./1a.sh
+	 File : ./1b.c
+	 File : ./2a.sh
+	 File : ./3a.sh
+	 File : ./3b.c
+	 File : ./a.out
+	 File : ./10b
+	 File : ./temp1
+	 File : ./temp2
+	 File : ./temp3
+	 Directory : ./prnfiles
+	 File : ./prnfiles/10b.txt
+	 File : ./prnfiles/11b.txt
+	 File : ./prnfiles/1a.txt
+	 File : ./prnfiles/1b.txt
+	 File : ./prnfiles/2a.txt
+	 File : ./prnfiles/2b
+	 File : ./prnfiles/2b.txt
+	 File : ./prnfiles/3a.txt
+	 File : ./prnfiles/3b.txt
+	 File : ./prnfiles/4b.txt
+	 File : ./prnfiles/6b
+	 File : ./prnfiles/6b.txt
+	 File : ./prnfiles/desktop.ini
+	 File : ./more
+	 File : ./5b.c
+	 File : ./4a.sh
+*/

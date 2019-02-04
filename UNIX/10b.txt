@@ -1,0 +1,77 @@
+/*	Name : ABHIJITH D.A.	Reg.no : 1PI01IS001
+
+10b>.	Using fork() create child process. Child process prints
+	it's own pid and that of parent and exits. Parent process
+	waits for child to finish and then prints if own pid and
+	and id of child and exits.
+*/
+
+#include<stdio.h>
+#include<unistd.h>
+#include<fcntl.h>
+
+pid_t pid;
+
+int main()
+{
+ pid=fork();
+ if(pid==0)
+ {
+  printf("\n ---------- Child area -------------- \n");
+  printf("\n Child Pid : %d \n",getpid());
+  printf("\n Parent Pid : %d \n",getppid());
+  printf("\n ------------------------------------\n");
+ }
+ else
+ {
+  wait();
+  printf("\n ---------- Parent area -------------\n");
+  printf("\n Parent Pid : %d \n",getpid());
+  printf("\n Child Pid : %d \n",pid);
+  printf("\n ------------------------------------\n");
+ }
+ return 1;
+}
+
+
+/*---------------------------Outputs-------------------------
+
+1>.
+[pi01is001@localhost unix]$ ./a.out
+
+ ---------- Child area --------------
+
+ Child Pid : 2509
+
+ Parent Pid : 2508
+
+ ------------------------------------
+
+ ---------- Parent area -------------
+
+ Parent Pid : 2508
+
+ Child Pid : 2509
+
+ ------------------------------------
+[pi01is001@localhost unix]$
+
+2>.
+[pi01is001@localhost unix]$ ./a.out
+
+ ---------- Child area --------------
+
+ Child Pid : 2817
+
+ Parent Pid : 2816
+
+ ------------------------------------
+
+ ---------- Parent area -------------
+
+ Parent Pid : 2816
+
+ Child Pid : 2817
+
+ ------------------------------------
+[pi01is001@localhost unix]$

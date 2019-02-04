@@ -1,0 +1,67 @@
+#	Name : ABHIJITH D.A.	Reg.No : 1PI01IS001
+
+#6a>.	Write a shell script to implement terminal locking
+#	(similar to the lock command it should prompt the 
+#	user for a password. After accepting the password
+#	entered by the user it must prompt again for the 
+#	matching password as confirmation and if the the
+#	match occurs, it must lock the keyboard until a 
+#	matching password is entered again by the user note
+#	that the script must be written to disregard break,
+#	control-d, etc. No time limit need be implemented 
+#	for the lock duration).
+
+
+trap "" 1 2 3 5 20	#Disable all trap and kill signals.
+clear
+echo "Enter Password : "
+stty -echo
+read keynew
+stty echo
+echo "Confirm Password : "
+stty -echo
+read keyold
+stty echo
+if [ $keyold = $keynew ]
+then
+ echo "Terminal Locked."
+ while [ 1 ]
+ do
+  echo " Retype Password : "
+  stty -echo
+  read key
+  if [ $key = $keynew ]
+  then 
+   stty echo
+   echo "Terminal Unlock"
+   stty sane
+   exit
+  fi
+ done
+else
+ echo "Password do not match"
+fi
+stty sane		#Enable all Trap and Kill signals.
+
+
+#------------------------Output---------------------
+
+#1>.
+#[abhi@localhost unix]$ sh 6a.sh
+#Enter Password : 
+#Confirm Password : 
+#Terminal Locked.
+# Retype Password : 
+# Retype Password : 
+# Retype Password : 
+#Terminal Unlock
+
+#[abhi@localhost unix]$ 
+
+#2>.
+#[abhi@localhost unix]$ sh 6a.sh
+#Enter Password : 
+#Confirm Password : 
+#Password do not match
+
+#[abhi@localhost unix]$ 
