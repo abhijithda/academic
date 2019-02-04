@@ -1,0 +1,815 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = 
+"urn:schemas-microsoft-com:vml" xmlns:o = 
+"urn:schemas-microsoft-com:office:office"><HEAD><TITLE>Edit Account - Hot-Soft Jobs.com</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
+href="http://media.monster.com/au/images/favicon.ico" rel="SHORTCUT ICON"><LINK 
+href="EditAccount_files/general.css" type=text/css rel=stylesheet>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR></HEAD>
+<BODY text=#000000 vLink=#006666 aLink=#999300 link=#663399 bgColor=#ffffff 
+leftMargin=0 topMargin=0 marginheight="0" marginwidth="0">
+<CENTER>
+<TABLE height=16 cellSpacing=0 cellPadding=0 width=600 border=0>
+  <TBODY>
+  <TR>
+    <TD 
+    style="PADDING-RIGHT: 0in; PADDING-LEFT: 0in; BACKGROUND: #663399; PADDING-BOTTOM: 0in; PADDING-TOP: 0in" 
+    width=197 height=17>
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><SPAN 
+      style="FONT-SIZE: 7.5pt; FONT-FAMILY: Verdana"><B><SPAN 
+      style="COLOR: white"><A href="http://localhost/hot-soft/myhome.html"><FONT 
+      color=#ffff00>My Home</FONT></A></SPAN></B></SPAN></P></TD>
+    <TD 
+    style="PADDING-RIGHT: 0in; PADDING-LEFT: 0in; BACKGROUND: #000000; PADDING-BOTTOM: 0in; PADDING-TOP: 0in" 
+    width=204 height=17>
+      <P class=MsoNormal style="TEXT-ALIGN: center" align=center><FONT 
+      color=#ff00ff><A href="javascript:window.close()"><FONT 
+      color=#e0e0e0><FONT face=Verdana><!-- 
+href="http://localhost/cgi-bin/hot-soft/signout.cgi">
+--></FONT><B><FONT face=Verdana size=1>Sign 
+      Out</FONT></B></FONT></A></FONT></P></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width=600 align=center border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle><FONT face=Verdana><IMG height=132 
+      src="http://localhost/hot-soft/EditAccount_files/hot-softjobs.gif" width=534 
+  border=0></FONT></TD></TR></TBODY></TABLE></CENTER>
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=0 width=597 border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=460>
+      <SCRIPT language=JavaScript src="" type=text/javascript>
+<!-- -->
+      </SCRIPT>
+
+      <SCRIPT language=JavaScript>
+
+<!-- // begin hide
+
+var cancelClicked = false;
+
+
+
+
+
+// Called when new country selected from country dropdown
+function DisplayAsterisk(doco) {
+	with (doco.mons_form1) {
+		if (( typeof CountryID != "undefined" ) && ( typeof PostalCode != "undefined" )) {
+			// This will show red asterisk on Postal Code field when Country is selected as Canada or Zip Code is required field (except HK, NZ)
+			var strCountryID = CountryID.options[CountryID.selectedIndex].value;
+			document.getElementById("RedAsterisk").innerHTML = (strCountryID == "30"  ) ? '<font color="#CC0000">*</font>' : '<font color="#CC0000"><br></font>';
+		}
+	}
+}
+
+
+
+// Validate that the passwords are the same, and that
+// the email address looks OK
+function submitHandler(doco)
+{
+	// var form = doco.mons_form1;
+	var retVal = true;
+
+    // If the cancel button was clicked, get out of here
+    if (  cancelClicked == true )
+    {
+		return retVal;
+	}
+
+
+
+
+
+    if( retVal == true )
+    {
+        retVal = checkString( doco.mons_form1.FirstName, "First Name", false);
+    }
+    if( retVal == true )
+    {
+        retVal = checkString( doco.mons_form1.LastName, "Last Name", false);
+    }
+
+
+
+	//vaclav 18-MAR-2004 DEV00078463
+    if( (retVal == true) && (doco.mons_form1.experiencelevelid.selectedIndex == 0) )
+	{
+		warnEmpty (doco.mons_form1.experiencelevelid, "Total Work Experience");
+		retVal = false;
+    }
+
+
+		if( retVal == true )
+		{
+		    retVal = checkEmail( doco.mons_form1.EMail );
+		}
+		if( retVal == true )
+		{
+		    retVal = checkString( doco.mons_form1.UserName, "Create a Username", false);
+		}
+		if( retVal == true )
+		{
+		    retVal = checkString( doco.mons_form1.myPassword, "Create a Password", false);
+		}
+		if( retVal == true )
+		{
+		    retVal = checkString( doco.mons_form1.PasswordConfirm, "Confirm Password", false);
+		}
+
+
+	
+		
+			
+	if( (retVal == true) && (doco.mons_form1.careerlevelid.selectedIndex == 0) ) {
+		warnEmpty (doco.mons_form1.careerlevelid, "Career Level");
+		retVal = false;
+	}
+
+	if( (retVal == true) && (doco.mons_form1.levelid.selectedIndex == 0) )
+	{
+		warnEmpty (doco.mons_form1.levelid, "Degree Level:");
+		retVal = false;
+    }
+
+
+if( retVal == true )
+    {
+		if ( (doco.mons_form1.PasswordHintQuestion.selectedIndex != 0)
+			&& (( isEmpty(doco.mons_form1.PasswordHintAnswer.value) == true ) || ( isWhitespace(doco.mons_form1.PasswordHintAnswer.value) == true ) ))
+		{
+			doco.mons_form1.PasswordHintAnswer.focus();
+			alert("You did not enter an Answer for the Password Question.  Please enter an Answer.");
+			retVal = false;
+		}
+	}
+    if( retVal == true )
+    {
+		if (( ( isEmpty(doco.mons_form1.PasswordHintAnswer.value) == false ) || ( isWhitespace(doco.mons_form1.PasswordHintAnswer.value) == false ) )
+			&& (doco.mons_form1.PasswordHintQuestion.selectedIndex == 0))
+		{
+			doco.mons_form1.PasswordHintQuestion.focus();
+			alert("You did not select a Password Question.  Please select a Password Question.");
+			retVal = false;
+		}
+	}
+
+
+
+
+
+
+
+
+	if( retVal == true )
+	{
+		var password1 = doco.mons_form1.myPassword.value;
+		var password2 = doco.mons_form1.PasswordConfirm.value;
+		if( password1 != password2 )
+		{
+			var msg = "";
+			msg += "_________________________________\n";
+			msg += "Passwords do not match. Please re-enter them.\n";
+			msg += "_________________________________\n";
+			doco.mons_form1.myPassword.focus();
+			doco.mons_form1.myPassword.select();
+			alert( msg );
+			retVal = false;
+		}
+    }
+
+	// Check Postal/ZIP code when CountryID and PostalCode fields exists and Country is selected as Canada
+	if (( retVal == true ) && ( typeof doco.mons_form1.CountryID != "undefined" ) && ( typeof doco.mons_form1.PostalCode != "undefined" ))
+	{
+		if (doco.mons_form1.CountryID.options[doco.mons_form1.CountryID.selectedIndex].value == "30")
+		{
+			var postalcodeCanada = /^([A-Z][0-9]){3}$/;
+
+			doco.mons_form1.PostalCode.value = doco.mons_form1.PostalCode.value.replace(/\s/g, "").toUpperCase();
+			if (postalcodeCanada.test(doco.mons_form1.PostalCode.value) == false)
+			{
+				retVal = warnInvalid(doco.mons_form1.PostalCode, "Postal/ZIP code is a required field if you are from Canada.\nCanadian postal codes have the form LNLNLN where L=letter and N=number.");
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+//Return the code to make sure the user answers the optin questions
+//Begin User Optins Validation Code - Require User to pick yes or no
+
+	
+	if ( ( retVal == true ) && ( document.mons_form1.optin_yn_70_210[0].checked == false )
+			&& ( document.mons_form1.optin_yn_70_210[1].checked == false ) )
+			{
+				document.mons_form1.optin_yn_70_210[0].focus();
+				alert('Please answer all of the required questions by selecting either yes or no.');
+				retVal = false;
+			}
+
+	//End User Optins Validation Code
+
+
+
+	var strLoggedIn;
+	strLoggedIn = "False";
+
+
+
+
+	if ( ( retVal == true )  && ( strLoggedIn.indexOf( "True" ) > -1 ) && (isWhitespace(doco.mons_form1.OldPassword.value)) )
+	{
+		retVal = false;
+		doco.mons_form1.OldPassword.focus();
+		alert("Enter your old password to confirm changes");
+	}
+
+
+
+    return retVal;
+}
+
+function IsNumeric (s)
+{   var i;
+    if (IsEmpty(s))
+       if (IsNumeric.arguments.length == 1) return false
+       else return (IsNumeric.arguments[1] == true);
+    // Search through string's characters one by one
+    // until we find a non-numeric character.
+    // When we do, return false; if we don't, return true.
+    for (i = 0; i < s.length; i++)
+    {
+        // Check that current character is number.
+        var c = s.charAt(i);
+        if (!IsDigit(c)) return false;
+    }
+    // All characters are numbers.
+    return true;
+}
+
+function IsEmpty(s)
+{   return ((s == null) || (s.length == 0))
+}
+
+function IsDigit (c)
+{   return ((c >= "0") && (c <= "9"))
+}
+
+// -->
+
+      </SCRIPT>
+
+      <SCRIPT language=javascript>
+<!--
+function validate(form)
+	{
+			if(document.Edit_Account.opass.value == "" )
+		{
+			alert("Enter Your Password.");
+			document.Edit_Account.opass.focus();
+			return false;
+		}
+		if(document.Edit_Account.fname.value == "" || document.Edit_Account.fname.value.length > 20)
+		{
+			alert("Enter Your First Name no more 20 characters.");
+			document.Edit_Account.fname.focus();
+			return false;
+		}
+		if(document.Edit_Account.lname.value == "" || document.Edit_Account.lname.value.length > 20)
+		{
+			alert("Last Name required no more 20 characters.");
+			document.Edit_Account.lname.focus();
+			return false;
+		}
+		if(document.Edit_Account.email.value == "")
+		{
+			alert("Email required .");
+			document.Edit_Account.email.focus();
+			return false;
+		}
+		if(document.Edit_Account.mname.value.length>20)
+		{
+			alert("Middle Name should not be more than 20 characters .");
+			document.Edit_Account.mname.focus();
+			return false;
+		}
+		if(document.Edit_Account.passa.value == "" || document.Edit_Account.fname.value.length > 20)
+		{
+			alert("Password answer required no more 20 characters.");
+			document.Edit_Account.passa.focus();
+			return false;
+		}
+
+	if ((form.fname.value == "") || (form.lname.value == "") || (form.passa.value== "") )
+	{
+		alert("You haven't filled one/more mandatory fields");
+		return false;
+	}
+	
+	
+	
+	
+	//VALIDATE Email Address
+	form.email.value= trimWS(form.email.value)
+	if (form.email.value == "" ) {
+		alert("You must enter an email address.")
+		form.email.focus()
+		return false
+	}
+	if (!validEmail(form.email.value)) {
+		alert("You must enter a valid email address.")
+		form.email.focus()
+		form.email.select()
+		return false
+	}
+	
+	if(form.opass.value == "")
+		{
+			alert("Enter Your Password.");
+			return false;
+		}
+	
+}
+-->
+      </SCRIPT>
+      
+      
+      
+      
+      
+      
+      <SCRIPT language=javascript type=text/javascript>
+<!--
+
+function trimWS(s)
+{
+	// Remove leading and trailing whitespace.
+	while(s.substr(s.length - 1) == " ")
+		s= s.substr(0, s.length - 1);
+	while(s.indexOf(" ") == 0)
+		s= s.substr(1);
+
+	return s;
+}
+
+function isNum(passedVal) {	// Is this a number?
+	var i
+	for (i=0; i<passedVal.length; i++) {
+		if ( passedVal.charAt(i) < "0" || passedVal.charAt(i) > "9" ) {
+			return false
+		}
+	}
+	return true
+}
+
+function validEmail(email) {
+	var i, badChar, atPos, periodPos, invalidChars = " :,;"
+	
+	if (email == "") {						// cannot be empty
+		return false
+	}
+	for (i=0; i<invalidChars.length; i++) {	// does it contain any invalid characters?
+		badChar = invalidChars.charAt(i)
+		if (email.indexOf(badChar,0) > -1) {
+			return false
+		}
+	}
+	atPos = email.indexOf("@",1)			// there must be one "@" symbol
+	if (atPos == -1) {
+		return false
+	}
+	if (email.indexOf("@",atPos+1) != -1) {	// and only one "@" symbol
+		return false
+	}
+	periodPos = email.indexOf(".",atPos)
+	if (periodPos == -1) {					// and at least one "." after the "@"
+		return false
+	}
+	if (periodPos+3 > email.length)	{		// must be at least 2 characters after the "."
+		return false
+	}
+	return true
+}
+
+//-->
+      </SCRIPT>
+
+      <CENTER>
+      <FORM name=Edit_Account onsubmit="return validate(this)" 
+      action=http://localhost/cgi-bin/hot-soft/editaccinfo.cgi method=post>
+      <TABLE cellSpacing=0 cellPadding=0 width=600 border=0>
+        <TBODY>
+        <TR>
+          <TD width=600 colSpan=3 height=0>
+            <P><FONT face=Verdana><BR><!--<center>--></FONT><STRONG><SPAN 
+            class=txtpgTitle><FONT face=Verdana>Edit My Hot-Soft Jobs 
+            Account</FONT></SPAN></STRONG><FONT 
+          face=Verdana><BR><BR></FONT></P></TD></TR>
+        <TR>
+          <TD align=left width=600 colSpan=3><FONT color=#cc0000><FONT 
+            face=Verdana>* </FONT><SPAN class=txtSmallNormal><FONT 
+            face=Verdana>Required fields. </FONT></SPAN></FONT></TD></TR></X:MTMT>
+        <TR><!--FirstName-->
+          <TD vAlign=bottom width=8><FONT face=Verdana 
+          color=#cc0000>*</FONT></TD>
+          <TD vAlign=bottom width=162>
+            <DIV class=txtXsmall align=left><FONT face=Verdana>First 
+            Name</FONT></DIV></TD>
+          <TD vAlign=bottom width=430><FONT face=Verdana><INPUT id=FirstName 
+            tabIndex=1 maxLength=50 size=30 value="_fname_" name=fname> 
+        </FONT></TD></TR>
+        <TR><!--MiddleName-->
+          <TD vAlign=center width=8></TD>
+          <TD width=162>
+            <DIV class=txtXsmall align=left><FONT face=Verdana>Middle 
+            Name</FONT></DIV></TD><!--<td  valign="center"><font color="#CC0000"><br></font></td>-->
+          <TD width=430><FONT face=Verdana><INPUT id=MiddleName tabIndex=2 
+            maxLength=50 size=30  name=mname value="_mname_"> </FONT></TD></TR>
+        <TR><!--LastName-->
+          <TD vAlign=top width=8 height=50><FONT face=Verdana 
+            color=#cc0000>*</FONT></TD>
+          <TD vAlign=top width=162>
+            <DIV class=txtXsmall align=left><FONT face=Verdana>Last 
+            Name</FONT></DIV></TD>
+          <TD vAlign=top width=430><FONT face=Verdana><INPUT id=LastName 
+            tabIndex=3 maxLength=50 size=30 value="_lname_" name=lname> 
+        </FONT></TD></TR>
+        <TR><!--Country-->
+          <TD vAlign=top width=8><FONT face=Verdana color=#cc0000>*</FONT></TD>
+          <TD vAlign=top width=162>
+            <DIV class=txtXsmall align=left><FONT 
+            face=Verdana>Country</FONT></DIV></TD>
+          <TD vAlign=top width=430><FONT face=Verdana>
+          <!--webbot bot="Validation" b-value-required="TRUE" b-disallow-first-item="TRUE" --><SELECT 
+            id=CountryID tabIndex=4 onchange=DisplayAsterisk(document); 
+              name=cid> <OPTION selected>"_cid_"</OPTION> 
+              <OPTION>Afghanistan</OPTION> <OPTION>Albania</OPTION> 
+              <OPTION>Algeria</OPTION> <OPTION>American Samoa</OPTION> 
+              <OPTION>Andorra</OPTION> <OPTION>Angola</OPTION> 
+              <OPTION>Anguilla</OPTION> <OPTION>Antartica</OPTION> 
+              <OPTION>Antigua and Barbuda</OPTION> <OPTION>Argentina</OPTION> 
+              <OPTION>Armenia</OPTION> <OPTION>Aruba</OPTION> 
+              <OPTION>Australia</OPTION> <OPTION>Austria</OPTION> 
+              <OPTION>Azerbaidjan</OPTION> <OPTION>Bahamas</OPTION> 
+              <OPTION>Bahrain</OPTION> <OPTION>Bangladesh</OPTION> 
+              <OPTION>Barbados</OPTION> <OPTION>Belarus</OPTION> 
+              <OPTION>Belgium</OPTION> <OPTION>Belize</OPTION> 
+              <OPTION>Benin</OPTION> <OPTION>Bermuda</OPTION> 
+              <OPTION>Bhutan</OPTION> <OPTION>Bolivia</OPTION> 
+              <OPTION>Bosnia-Herzegovina</OPTION> <OPTION>Botswana</OPTION> 
+              <OPTION>Bouvet Island</OPTION> <OPTION>Brazil</OPTION> 
+              <OPTION>British Indian Ocean Territory</OPTION> <OPTION>Brunei 
+              Darussalam</OPTION> <OPTION>Bulgaria</OPTION> <OPTION>Burkina 
+              Faso</OPTION> <OPTION>Burundi</OPTION> <OPTION>Cambodia</OPTION> 
+              <OPTION>Cameroon</OPTION> <OPTION>Canada</OPTION> <OPTION>Cape 
+              Verde</OPTION> <OPTION>Cayman Islands</OPTION> <OPTION>Central 
+              African Republic</OPTION> <OPTION>Chad</OPTION> 
+              <OPTION>Chile</OPTION> <OPTION>China</OPTION> <OPTION>Christmas 
+              Island</OPTION> <OPTION>Cocos (Keeling) Islands</OPTION> 
+              <OPTION>Colombia</OPTION> <OPTION>Comoros</OPTION> 
+              <OPTION>Congo</OPTION> <OPTION>Cook Islands</OPTION> <OPTION>Costa 
+              Rica</OPTION> <OPTION>Croatia</OPTION> <OPTION>Cyprus</OPTION> 
+              <OPTION>Czech Republic</OPTION> <OPTION>Denmark</OPTION> 
+              <OPTION>Djibouti</OPTION> <OPTION>Dominica</OPTION> 
+              <OPTION>Dominican Republic</OPTION> <OPTION>East Timor</OPTION> 
+              <OPTION>Ecuador</OPTION> <OPTION>Egypt</OPTION> <OPTION>El 
+              Salvador</OPTION> <OPTION>Equatorial Guinea</OPTION> 
+              <OPTION>Eritrea</OPTION> <OPTION>Estonia</OPTION> 
+              <OPTION>Ethiopia</OPTION> <OPTION>Falkland Islands</OPTION> 
+              <OPTION>Faroe Islands</OPTION> <OPTION>Fiji</OPTION> 
+              <OPTION>Finland</OPTION> <OPTION>Former USSR</OPTION> 
+              <OPTION>France</OPTION> <OPTION>France (European 
+              Territory)</OPTION> <OPTION>French Guyana</OPTION> <OPTION>French 
+              Southern Territories</OPTION> <OPTION>Gabon</OPTION> 
+              <OPTION>Gambia</OPTION> <OPTION>Georgia</OPTION> 
+              <OPTION>Germany</OPTION> <OPTION>Ghana</OPTION> 
+              <OPTION>Gibraltar</OPTION> <OPTION>Greece</OPTION> 
+              <OPTION>Greenland</OPTION> <OPTION>Grenada</OPTION> 
+              <OPTION>Guadeloupe (French)</OPTION> <OPTION>Guam</OPTION> 
+              <OPTION>Guatemala</OPTION> <OPTION>Guinea</OPTION> <OPTION>Guinea 
+              Bissau</OPTION> <OPTION>Guyana</OPTION> <OPTION>Haiti</OPTION> 
+              <OPTION>Heard and McDonald Islands</OPTION> 
+              <OPTION>Honduras</OPTION> <OPTION>Hong Kong</OPTION> 
+              <OPTION>Hungary</OPTION> <OPTION>Iceland</OPTION> 
+              <OPTION>India</OPTION> <OPTION>Indonesia</OPTION> 
+              <OPTION>Iraq</OPTION> <OPTION>Ireland</OPTION> 
+              <OPTION>Israel</OPTION> <OPTION>Italy</OPTION> <OPTION>Ivory 
+              Coast</OPTION> <OPTION>Jamaica</OPTION> <OPTION>Japan</OPTION> 
+              <OPTION>Jordan</OPTION> <OPTION>Kazakhstan</OPTION> 
+              <OPTION>Kenya</OPTION> <OPTION>Kiribati</OPTION> 
+              <OPTION>Kuwait</OPTION> <OPTION>Kyrgyzstan</OPTION> 
+              <OPTION>Laos</OPTION> <OPTION>Latvia</OPTION> 
+              <OPTION>Lebanon</OPTION> <OPTION>Lesotho</OPTION> 
+              <OPTION>Liberia</OPTION> <OPTION>Liechtenstein</OPTION> 
+              <OPTION>Lithuania</OPTION> <OPTION>Luxembourg</OPTION> 
+              <OPTION>Macau</OPTION> <OPTION>Macedonia</OPTION> 
+              <OPTION>Madagascar</OPTION> <OPTION>Malawi</OPTION> 
+              <OPTION>Malaysia</OPTION> <OPTION>Maldives</OPTION> 
+              <OPTION>Mali</OPTION> <OPTION>Malta</OPTION> <OPTION>Marshall 
+              Islands</OPTION> <OPTION>Martinique (French)</OPTION> 
+              <OPTION>Mauritania</OPTION> <OPTION>Mauritius</OPTION> 
+              <OPTION>Mayotte</OPTION> <OPTION>Mexico</OPTION> 
+              <OPTION>Micronesia</OPTION> <OPTION>Moldavia</OPTION> 
+              <OPTION>Monaco</OPTION> <OPTION>Mongolia</OPTION> 
+              <OPTION>Montserrat</OPTION> <OPTION>Morocco</OPTION> 
+              <OPTION>Mozambique</OPTION> <OPTION>Namibia</OPTION> 
+              <OPTION>Nauru</OPTION> <OPTION>Nepal</OPTION> 
+              <OPTION>Netherlands</OPTION> <OPTION>Netherlands Antilles</OPTION> 
+              <OPTION>Neutral Zone</OPTION> <OPTION>New Caledonia 
+              (French)</OPTION> <OPTION>New Zealand</OPTION> 
+              <OPTION>Nicaragua</OPTION> <OPTION>Niger</OPTION> 
+              <OPTION>Nigeria</OPTION> <OPTION>Niue</OPTION> <OPTION>Norfolk 
+              Island</OPTION> <OPTION>Northern Mariana Islands</OPTION> 
+              <OPTION>Norway</OPTION> <OPTION>Oman</OPTION> 
+              <OPTION>Pakistan</OPTION> <OPTION>Palau</OPTION> 
+              <OPTION>Panama</OPTION> <OPTION>Papua New Guinea</OPTION> 
+              <OPTION>Paraguay</OPTION> <OPTION>Peru</OPTION> 
+              <OPTION>Philippines</OPTION> <OPTION>Pitcairn Island</OPTION> 
+              <OPTION>Poland</OPTION> <OPTION>Polynesia (French)</OPTION> 
+              <OPTION>Portugal</OPTION> <OPTION>Qatar</OPTION> <OPTION>Reunion 
+              (French)</OPTION> <OPTION>Romania</OPTION> <OPTION>Russian 
+              Federation</OPTION> <OPTION>Rwanda</OPTION> <OPTION>S. Georgia 
+              &amp; S. Sandwich Islands</OPTION> <OPTION>Saint Helena</OPTION> 
+              <OPTION>Saint Kitts &amp; Nevis Anguilla</OPTION> <OPTION>Saint 
+              Lucia</OPTION> <OPTION>Saint Pierre and Miquelon</OPTION> 
+              <OPTION>Saint Tome and Principe</OPTION> <OPTION>Saint Vincent 
+              &amp; Grenadines</OPTION> <OPTION>Samoa</OPTION> <OPTION>San 
+              Marino</OPTION> <OPTION>Saudi Arabia</OPTION> 
+              <OPTION>Senegal</OPTION> <OPTION>Seychelles</OPTION> 
+              <OPTION>Sierra Leone</OPTION> <OPTION>Singapore</OPTION> 
+              <OPTION>Slovakia</OPTION> <OPTION>Slovenia</OPTION> 
+              <OPTION>Solomon Islands</OPTION> <OPTION>Somalia</OPTION> 
+              <OPTION>South Africa</OPTION> <OPTION>South Korea</OPTION> 
+              <OPTION>Spain</OPTION> <OPTION>Sri Lanka</OPTION> 
+              <OPTION>Suriname</OPTION> <OPTION>Svalbard and Jan Mayen 
+              Islands</OPTION> <OPTION>Swaziland</OPTION> 
+              <OPTION>Sweden</OPTION> <OPTION>Switzerland</OPTION> 
+              <OPTION>Tadjikistan</OPTION> <OPTION>Taiwan</OPTION> 
+              <OPTION>Tanzania</OPTION> <OPTION>Thailand</OPTION> 
+              <OPTION>Togo</OPTION> <OPTION>Tokelau</OPTION> 
+              <OPTION>Tonga</OPTION> <OPTION>Trinidad and Tobago</OPTION> 
+              <OPTION>Tunisia</OPTION> <OPTION>Turkey</OPTION> 
+              <OPTION>Turkmenistan</OPTION> <OPTION>Turks and Caicos 
+              Islands</OPTION> <OPTION>Tuvalu</OPTION> <OPTION>Uganda</OPTION> 
+              <OPTION>UK</OPTION> <OPTION>Ukraine</OPTION> <OPTION>United Arab 
+              Emirates</OPTION> <OPTION>Uruguay</OPTION> <OPTION>US</OPTION> 
+              <OPTION>US Minor Outlying Islands</OPTION> 
+              <OPTION>Uzbekistan</OPTION> <OPTION>Vanuatu</OPTION> 
+              <OPTION>Vatican City</OPTION> <OPTION>Venezuela</OPTION> 
+              <OPTION>Vietnam</OPTION> <OPTION>Virgin Islands (British)</OPTION> 
+              <OPTION>Virgin Islands (US)</OPTION> <OPTION>Wallis and Futuna 
+              Islands</OPTION> <OPTION>Western Sahara</OPTION> 
+              <OPTION>Yemen</OPTION> <OPTION>Yugoslavia</OPTION> 
+              <OPTION>Zaire</OPTION> <OPTION>Zambia</OPTION> 
+              <OPTION>Zimbabwe</OPTION></SELECT> </FONT></TD></TR>
+        <TR>
+          <TD width=589 colSpan=3><FONT face=Verdana>&nbsp; </FONT>
+            <P>&nbsp;</P></TD></TR>
+        <TR><!--Email-->
+          <TD vAlign=bottom width=8><FONT face=Verdana 
+          color=#cc0000>*</FONT></TD>
+          <TD vAlign=bottom width=162>
+            <DIV class=txtXsmall align=left><FONT face=Verdana>Email 
+            Address</FONT></DIV></TD>
+          <TD vAlign=bottom width=430><FONT face=Verdana><INPUT id=EMail 
+            tabIndex=5 maxLength=100 size=60  name=email value="_email_"> 
+        </FONT></TD></TR>
+        <TR>
+          <TD width=8></TD>
+          <TD width=162></TD>
+          <TD class=txtSmallNormal vAlign=bottom width=430></TD></TR><!--email preferences-->
+        <TR>
+          <TD vAlign=top width=600 colSpan=3 height=40>&nbsp;</TD></TR>
+        <TR><!--Password--></TR>
+        <TR><!--ConfirmPassword--></TR><X:SL02>
+        <TR><!--PasswordQuestion-->
+          <TD vAlign=center width=8><FONT face=Verdana 
+            color=#cc0000><BR></FONT></TD>
+          <TD width=162>
+            <DIV class=txtXsmall align=left><FONT face=Verdana>Password 
+            Question</FONT></DIV></TD>
+          <TD width=419><FONT face=Verdana><SELECT id=PasswordHintQuestion 
+            tabIndex=8 name=passq> <OPTION 
+              selected>"_passq_"</OPTION><OPTION>What is the name of your 
+              favourite pet?</OPTION> <OPTION>What is the name of the city/town 
+              where you were born?</OPTION> <OPTION>What is your mother's maiden 
+              name?</OPTION></SELECT> </FONT></TD></TR>
+        <TR><!--PasswordQuestionAnswer-->
+          <TD vAlign=center width=8><FONT face=Verdana 
+            color=#cc0000><BR></FONT></TD>
+          <TD width=162>
+            <DIV class=txtXsmall align=left><FONT face=Verdana>Your 
+            Answer</FONT></DIV></TD>
+          <TD width=430><FONT face=Verdana>
+          <INPUT id=PasswordHintAnswer 
+            tabIndex=9 maxLength=100  name=passa size="20" value="_passa_"> </FONT></TD></TR>
+        <TR><!--PasswordQuestion Help Text-->
+          <TD width=170 colSpan=2><FONT face=Verdana>&nbsp; </FONT></TD>
+          <TD class=txtSmallNormal width=430><FONT face=Verdana>To help 
+            remember and protect your password, supply a personal ""hint"" by 
+            selecting a Password Question and answering it below. </FONT></TD></TR>
+        <TR>
+          <TD width=600 colSpan=3 height=15>
+            <HR>
+          </TD></TR><!--NickName/ScreenName-->
+        <TR><!--PostalCode--><!--- add for spacing issues--->
+        <TR>
+          <TD width=589 colSpan=3>&nbsp;</TD></TR>
+        <TR><!--TotalYearsWorkExperience-->
+          <TD vAlign=center width=8><FONT face=Verdana color=#cc0000>* 
+          </FONT></TD>
+          <TD width=162>
+            <DIV class=txtXsmall align=left><FONT face=Verdana>Total Work 
+            Experience </FONT></DIV></TD>
+          <TD width=430><FONT face=Verdana size=-1><SELECT tabIndex=10 
+            name=elid> <OPTION selected>"_elid_"</OPTION><OPTION>Less than 1 
+              Year</OPTION> <OPTION>1 to 2 Years</OPTION><OPTION>2 to 5 
+              Years</OPTION><OPTION>5 to 7 Years</OPTION> <OPTION>7 to 10 
+              Years</OPTION><OPTION>10 to 15 Years</OPTION><OPTION>More than 15 
+              Years</OPTION></SELECT> </FONT></TD></TR>
+        <TR><!-- CareerLevel-->
+          <TD vAlign=center width=8><FONT face=Verdana><FONT 
+            color=#cc0000>*</FONT> </FONT></TD>
+          <TD width=162>
+            <DIV class=txtXsmall align=left><FONT face=Verdana>Career Level 
+            </FONT></DIV></TD>
+          <TD width=430><FONT face=Verdana><SELECT id=carerlevelid tabIndex=11 
+            name=clid> <OPTION selected>"_clid_"</OPTION><OPTION>Student (High 
+              School)</OPTION> <OPTION>Student</OPTION><OPTION>Entry Level (less 
+              than 2 years of experience)</OPTION> <OPTION>Mid Career (2+ years 
+              of experience)</OPTION><OPTION>Manager</OPTION> <OPTION>Senior 
+              Management (VP and equivalent)</OPTION><OPTION>Top Management (CEO 
+              and equivalent)</OPTION></SELECT> </FONT></TD></TR>
+        <TR>
+          <TD vAlign=center width=8><FONT face=Verdana 
+          color=#cc0000>*</FONT></TD>
+          <TD width=162>
+            <DIV class=txtXsmall align=left><FONT face=Verdana>Degree/Level 
+            Attained</FONT></DIV></TD>
+          <TD class=txtXsmall width=430><FONT face=Verdana><SELECT 
+            id=educationlevelid tabIndex=12 name=degreeid> <OPTION 
+              selected>"_degreeid_"</OPTION><OPTION>High School or Equivalent 
+              (12th, Intermediate, Jr College)</OPTION> <OPTION>Certification 
+              (Diploma)</OPTION><OPTION>Vocational (Diploma)</OPTION> 
+              <OPTION>Some Tertiary Coursework 
+              Completed</OPTION><OPTION>Associates Degree</OPTION> 
+              <OPTION>Bachelor's Degree-Graduate Degree (BA, BSc, BCom)</OPTION> 
+              <OPTION>Master's Degree-Post Graduate (MA, MSc, MComm, 
+              LLB)</OPTION> 
+              <OPTION>Doctorate</OPTION><OPTION>Professional-Engineering(BE or 
+              BTech)</OPTION></SELECT> </FONT></TD></TR><!-- SIZZLE: Moved EmailPreference from here --><!--Message currently only used in MONS -->
+        <TR>
+          <TD align=middle width=600 colSpan=3>
+            <TABLE cellSpacing=0 cellPadding=0 align=center>
+              <TBODY>
+              <TR>
+                <TD vAlign=center align=right></TD></TR></TBODY></TABLE></TD>
+        <TR>
+          <TD width=600 colSpan=3><FONT 
+            face=Verdana>&nbsp;</FONT><X:SL02><FONT face=Verdana> 
+</FONT><X:SL02>
+            <HR>
+
+            <P><X:SL02><SPAN 
+            style="FONT-SIZE: 10pt; COLOR: #cc0000; FONT-FAMILY: Verdana">&nbsp; 
+            <A name=toldpass>*</A> </SPAN><SPAN 
+            style="FONT-SIZE: 10pt; FONT-FAMILY: Verdana">Enter your old 
+            password to confirm changes&nbsp;&nbsp; 
+            <INPUT tabIndex=13 
+            type=password maxLength=20 name=opass size="20"></SPAN><FONT face=Verdana> 
+            </FONT></P><X:SL02>
+            <HR>
+
+            <P>&nbsp;</P></TD></TR>
+        <TR>
+          <TD width=600 colSpan=3>
+            <TABLE height=21 width=232 align=center>
+              <TBODY>
+              <TR>
+                <TD align=right width=63 height=17><X:SL02><FONT face=Verdana><INPUT tabIndex=14 type=submit value=Submit name=Submit> 
+                  </FONT></TD>
+                <TD width=62 height=17></TD>
+                <TD align=left width=93 height=17><FONT face=Verdana>&nbsp;<INPUT tabIndex=15 type=reset value=Reset name=Reset></FONT></TD></TR></TBODY></TABLE></TD>
+        <TR>
+          <TD width=600 colSpan=3><FONT 
+        face=Verdana><BR>&nbsp;<BR></FONT></TD></TR></TBODY></TABLE><FONT 
+      face=Verdana><INPUT type=hidden value=/index.asp name=REFERRER> <INPUT 
+      type=hidden name=CANCELREDIRECT> <INPUT type=hidden name=NULLEMAIL> 
+      </FONT></FORM></CENTER><!-- Set a variable to determine what version of JavaScript we support.  --><!-- This technique can be extended to any number of language versions.  --><!-- The browser won't execute a script block that it can't support.  -->
+      <SCRIPT language=JavaScript> var _version = 1.0; </SCRIPT>
+
+      <SCRIPT language=JavaScript1.1> var _version = 1.1; </SCRIPT>
+
+      <SCRIPT language=JavaScript1.2> var _version = 1.2; </SCRIPT>
+
+      <SCRIPT language=JavaScript1.3> var _version = 1.3; </SCRIPT>
+
+      <SCRIPT language=JavaScript1.4> var _version = 1.4; </SCRIPT>
+
+      <SCRIPT language=JavaScript1.5> var _version = 1.5; </SCRIPT>
+
+      <SCRIPT language=JavaScript>
+// Make duplicate screen name and username errors stand out
+// so users don't get confused and think a dup username is the
+// problem when it is really the screen name
+// Also scroll old password field into view when old password doesn't
+// match.
+
+	//alert(_version);
+
+	var errorCode = 0;
+	var errMsg = "";
+
+	var strLoggedIn;
+	strLoggedIn = "False";
+
+
+
+
+	if ( errorCode == -2147219601 )
+	{
+		if ( navigator.appName == "Microsoft Internet Explorer" )
+		{
+			location.hash = "tun";
+			document.mons_form1.UserName.select();
+		}
+		else if ( _version <= 1.3 )  //Netscape (version 4.x) and other non-ie browsers
+		{
+			alert(errMsg);
+			document.mons_form1.UserName.focus();
+			document.mons_form1.UserName.select();
+		}
+		else  //Netscape (version 6.x) and other non-ie browsers
+		{
+			//bring the user name field into view
+			//need to go to the field below user name,
+			//because part of help text not visible when scroll to
+			//to user name
+			document.mons_form1.myPassword.focus();
+
+			//put the focus back onto user name field and hilite it
+			document.mons_form1.UserName.select();
+		}
+	}
+	else if ( errorCode == -2147219600 )
+	{
+		if ( navigator.appName == "Microsoft Internet Explorer" )
+		{
+			location.hash = "tsn";
+			document.mons_form1.NickName.select();
+		}
+		else if ( _version <= 1.3 )  //Netscape (version 4.x) and other non-ie browsers
+		{
+			alert(errMsg);
+			document.mons_form1.NickName.focus();
+			document.mons_form1.NickName.select();
+		}
+		else  //Netscape (version 6.x) and other non-ie browsers
+		{
+			//bring the screen name field into view
+			//need to go to the field below screen name,
+			//because part of help text not visible when scroll to
+			//to screen name
+
+
+			document.mons_form1.careerlevelid.focus();
+
+
+
+			//put the focus back onto screen name field and hilite it
+			document.mons_form1.NickName.select();
+		}
+	}
+	else if ( ( strLoggedIn == "True" ) && ( "True" == "False" ) )
+	{
+		if ( navigator.appName == "Microsoft Internet Explorer" )
+		{
+			location.hash = "toldpass";
+			document.mons_form1.OldPassword.select();
+		}
+		else if ( _version <= 1.3 )  //Netscape (version 4.x) and other non-ie browsers
+		{
+			document.mons_form1.OldPassword.focus();
+			document.mons_form1.OldPassword.select();
+		}
+		else  //Netscape (version 6.x) and other non-ie browsers
+		{
+			document.mons_form1.Continue.focus();
+			document.mons_form1.OldPassword.select();
+		}
+	}
+      </SCRIPT>
+    </TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width=140 border=0>
+  <TBODY>
+  <TR>
+    <TD></TD></TR></TBODY></TABLE></CENTER><!-- Start Footer --></TABLE></BODY></HTML>

@@ -1,0 +1,571 @@
+<html>
+
+<head>
+<meta name="keywords"
+content="Ramco ramco paper placement papers campus recruitments interview Placement Papers Campus Recruitments recruitment india companies job career preparation engineering question paper jobs test campussing Recruitment India tests">
+<meta name="description"
+content="A guide to question papers asked by companies during placements and recruitment across various Indian college campuses Companies like Infosys Wipro TCS Hughes IBM HCL Siemens are listed here">
+<meta name="author" content="AVAAVA">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<title>Ramco Sample Test Paper For Campus Recruitment</title>
+</head>
+
+<body bgcolor="#CCCC99">
+<div align="center"><center>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="50%"><font size="5"><u><a name="top">Ramco Sample <strong>C</strong> Test Paper</a></u></font></td>
+    <td width="50%"><p align="right">
+    <a title="Back to home page" href="http://localhost/hot-soft/companies.html">
+    Home</a></td>
+  </tr>
+</table>
+</center></div>
+
+<p align="right"><a href="../Ramco/Ramco.htm">Back To Ramco Page</a></p>
+
+<p>&nbsp;</p>
+<font SIZE="2">
+
+<p></font><font size="3">1) Find the output for the following C program</p>
+
+<p>main()<br>
+{<br>
+char *p1=&quot;Name&quot;;<br>
+char *p2;<br>
+p2=(char *)malloc(20);<br>
+while(*p2++=*p1++);<br>
+printf(&quot;%s\n&quot;,p2);<br>
+}</p>
+
+<p><font color="#800000">&nbsp;Ans. An empty string</font></p>
+
+<p><br>
+2) Find the output for the following C program</p>
+
+<p>main()<br>
+{<br>
+int x=20,y=35;<br>
+x = y++ + x++;<br>
+y = ++y + ++x;<br>
+printf(&quot;%d %d\n&quot;,x,y);<br>
+}</p>
+
+<p><font color="#800000">Ans. 57 94 </font></p>
+
+<p>&nbsp;<br>
+3) Find the output for the following C program</p>
+
+<p>main()<br>
+{<br>
+int x=5;<br>
+printf(&quot;%d %d %d\n&quot;,x,x&lt;&lt;2,x&gt;&gt;2);<br>
+}</p>
+
+<p><font color="#800000">Ans. 5 20 1</font></p>
+
+<p><br>
+4) Find the output for the following C program</p>
+
+<p>#define swap1(a,b) a=a+b;b=a-b;a=a-b;<br>
+main()<br>
+{<br>
+int x=5,y=10;<br>
+swap1(x,y);<br>
+printf(&quot;%d %d\n&quot;,x,y);<br>
+swap2(x,y);<br>
+printf(&quot;%d %d\n&quot;,x,y);<br>
+}<br>
+int swap2(int a,int b)<br>
+{<br>
+int temp;<br>
+temp=a;<br>
+b=a;<br>
+a=temp;<br>
+return;<br>
+}</p>
+
+<p><font color="#800000">Ans. 10 5</font></p>
+
+<p><br>
+5) Find the output for the following C program</p>
+
+<p>main()<br>
+{<br>
+char *ptr = &quot;Ramco Systems&quot;;<br>
+(*ptr)++;<br>
+printf(&quot;%s\n&quot;,ptr);<br>
+ptr++;<br>
+printf(&quot;%s\n&quot;,ptr);<br>
+}</p>
+
+<p><font color="#800000">Ans. Samco Systems</font></p>
+
+<p><br>
+6) Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+main()<br>
+{<br>
+char s1[]=&quot;Ramco&quot;;<br>
+char s2[]=&quot;Systems&quot;;<br>
+s1=s2;<br>
+printf(&quot;%s&quot;,s1);<br>
+}</p>
+
+<p><font color="#800000">Ans. Compilation error giving it cannot be an modifiable 'lvalue'</font></p>
+
+<p><br>
+7) Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+main()<br>
+{<br>
+char *p1;<br>
+char *p2;<br>
+p1=(char *) malloc(25);<br>
+p2=(char *) malloc(25);<br>
+strcpy(p1,&quot;Ramco&quot;);<br>
+strcpy(p2,&quot;Systems&quot;);<br>
+strcat(p1,p2);<br>
+printf(&quot;%s&quot;,p1);<br>
+}</p>
+
+<p><font color="#800000">&nbsp;Ans. RamcoSystems</font></p>
+
+<p><br>
+8) Find the output for the following C program given that<br>
+[1]. The following variable is available in file1.c<br>
+static int average_float;</p>
+
+<p><font color="#800000">Ans. All the functions in the file1.c can access the variable</font></p>
+
+<p><br>
+9) Find the output for the following C program</p>
+
+<p># define TRUE 0<br>
+some code<br>
+while(TRUE)<br>
+{<br>
+some code <br>
+}</p>
+
+<p><font color="#800000">Ans. This won't go into the loop as TRUE is defined as 0</font></p>
+
+<p><br>
+10) Find the output for the following C program</p>
+
+<p>main()<br>
+{<br>
+int x=10;<br>
+x++;<br>
+change_value(x);<br>
+x++;<br>
+Modify_value();<br>
+printf(&quot;First output: %d\n&quot;,x);<br>
+}<br>
+x++;<br>
+change_value(x);<br>
+printf(&quot;Second Output : %d\n&quot;,x);<br>
+Modify_value(x);<br>
+printf(&quot;Third Output : %d\n&quot;,x);<br>
+}<br>
+Modify_value()<br>
+{<br>
+return (x+=10);<br>
+}<br>
+change_value()<br>
+{<br>
+return(x+=1);<br>
+}</p>
+
+<p><font color="#800000">Ans. 12 1 1</font></p>
+
+<p><br>
+11) Find the output for the following C program</p>
+
+<p>main()<br>
+{<br>
+int x=10,y=15;<br>
+x=x++;<br>
+y=++y;<br>
+printf(&quot;%d %d\n&quot;,x,y);<br>
+}</p>
+
+<p><font color="#800000">Ans. 11 16</font></p>
+
+<p><br>
+12) Find the output for the following C program</p>
+
+<p>main()<br>
+{<br>
+int a=0;<br>
+if(a=0) printf(&quot;Ramco Systems\n&quot;);<br>
+printf(&quot;Ramco Systems\n&quot;);<br>
+}</p>
+
+<p><font color="#800000">Ans. Ony one time &quot;Ramco Systems&quot; will be printed</font></p>
+
+<p><br>
+13)&nbsp; Find the output for the following C program </p>
+
+<p>#include&lt;stdio.h&gt;<br>
+int SumElement(int *,int);<br>
+void main(void)<br>
+{<br>
+int x[10];<br>
+int i=10;<br>
+for(;i;)<br>
+{<br>
+i--;<br>
+*(x+i)=i;<br>
+}<br>
+printf(&quot;%d&quot;,SumElement(x,10));<br>
+}<br>
+int SumElement(int array[],int size)<br>
+{<br>
+int i=0;<br>
+float sum=0;<br>
+for(;i&lt;size;i++)<br>
+sum+=array[i];<br>
+return sum;<br>
+}</p>
+
+<p><br>
+Q14) Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+int printf(const char*,...);<br>
+void main(void)<br>
+{<br>
+int i=100,j=10,k=20;<br>
+-- int sum;<br>
+float ave;<br>
+char myformat[]=&quot;ave=%.2f&quot;;<br>
+sum=i+j+k;<br>
+ave=sum/3.0;<br>
+printf(myformat,ave);<br>
+}</p>
+
+<p><br>
+Q15)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+{<br>
+int a[10];<br>
+printf(&quot;%d&quot;,((a+9) + (a+1)));<br>
+}</p>
+
+<p><br>
+Q16)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void)<br>
+{<br>
+struct s{<br>
+int x;<br>
+float y;<br>
+}s1={25,45.00};<br>
+union u{<br>
+int x;<br>
+float y;<br>
+} u1;<br>
+u1=(union u)s1;<br>
+printf(&quot;%d and %f&quot;,u1.x,u1.y);<br>
+}&nbsp;</p>
+
+<p><br>
+Q17)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void)<br>
+{<br>
+unsigned int c;<br>
+unsigned x=0x3;<br>
+scanf(&quot;%u&quot;,&amp;c);<br>
+switch(c&amp;x)<br>
+{<br>
+case 3: printf(&quot;Hello!\t&quot;);<br>
+case 2: printf(&quot;Welcome\t&quot;);<br>
+case 1: printf(&quot;To All\t&quot;);<br>
+default:printf(&quot;\n&quot;);<br>
+}<br>
+}</p>
+
+<p><br>
+Q18)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+int fn(void);<br>
+void print(int,int(*)());<br>
+int i=10;<br>
+void main(void)<br>
+{<br>
+int i=20;<br>
+print(i,fn);<br>
+}<br>
+void print(int i,int (*fn1)())<br>
+{<br>
+printf(&quot;%d\n&quot;,(*fn1)());<br>
+}<br>
+int fn(void)<br>
+{<br>
+return(i-=5);<br>
+}</p>
+
+<p><br>
+Q19)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+{<br>
+char
+numbers[5][6]={&quot;Zero&quot;,&quot;One&quot;,&quot;Two&quot;,&quot;Three&quot;,&quot;Four&quot;};<br>
+printf(&quot;%s is %c&quot;,&amp;numbers[4][0],numbers[0][0]);<br>
+}</p>
+
+<p><br>
+Q20)&nbsp; Find the output for the following C program</p>
+
+<p>int bags[5]={20,5,20,3,20};<br>
+void main(void)<br>
+{<br>
+int pos=5,*next();<br>
+*next()=pos;<br>
+printf(&quot;%d %d %d&quot;,pos,*next(),bags[0]);<br>
+}<br>
+int *next()<br>
+{<br>
+int i;<br>
+for(i=0;i&lt;5;i++)<br>
+if (bags[i]==20)<br>
+return(bags+i);<br>
+printf(&quot;Error!&quot;);<br>
+exit(0);<br>
+}</p>
+
+<p><br>
+Q21)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void)<br>
+{<br>
+int y,z;<br>
+int x=y=z=10;<br>
+int f=x;<br>
+float ans=0.0;<br>
+f *=x*y;<br>
+ans=x/3.0+y/3;<br>
+printf(&quot;%d %.2f&quot;,f,ans);<br>
+}</p>
+
+<p><br>
+Q22)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+{<br>
+double dbl=20.4530,d=4.5710,dblvar3;<br>
+double dbln(void);<br>
+dblvar3=dbln();<br>
+printf(&quot;%.2f\t%.2f\t%.2f\n&quot;,dbl,d,dblvar3);<br>
+}<br>
+double dbln(void)<br>
+{<br>
+double dblvar3;<br>
+dbl=dblvar3=4.5;<br>
+return(dbl+d+dblvar3);<br>
+}</p>
+
+<p><br>
+Q23)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+static int i=5;<br>
+void main(void)<br>
+{<br>
+int sum=0;<br>
+do<br>
+{<br>
+sum+=(1/i);<br>
+}while(0&lt;i--);<br>
+}</p>
+
+<p><br>
+Q24)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void)<br>
+{<br>
+int oldvar=25,newvar=-25;<br>
+int swap(int,int);<br>
+swap(oldvar,newvar);<br>
+printf(&quot;Numbers are %d\t%d&quot;,newvar,oldvar);<br>
+}<br>
+int swap(int oldval,int newval)<br>
+{<br>
+int tempval=oldval;<br>
+oldval=newval;<br>
+newval=tempval;<br>
+}</p>
+
+<p><br>
+Q25)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+{<br>
+int i=100,j=20;<br>
+i++=j;<br>
+i*=j;<br>
+printf(&quot;%d\t%d\n&quot;,i,j);<br>
+}</p>
+
+<p><br>
+Q26)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+int newval(int);<br>
+void main(void)<br>
+{<br>
+int ia[]={12,24,45,0};<br>
+int i;<br>
+int sum=0;<br>
+for(i=0;ia[i];i++)<br>
+{<br>
+sum+=newval(ia[i]);<br>
+}<br>
+printf(&quot;Sum= %d&quot;,sum);<br>
+}<br>
+int newval(int x)<br>
+{<br>
+static int div=1;<br>
+return(x/div++);<br>
+}</p>
+
+<p>&nbsp;</p>
+
+<p>Q27)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+{<br>
+int var1,var2,var3,minmax;<br>
+var1=5;<br>
+var2=5;<br>
+var3=6;<br>
+minmax=(var1&gt;var2)?(var1&gt;var3)?var1:var3:(var2&gt;var3)?var2:var3;<br>
+printf(&quot;%d\n&quot;,minmax);</p>
+
+<p><br>
+Q28)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+{<br>
+void pa(int *a,int n);<br>
+int arr[5]={5,4,3,2,1};<br>
+pa(arr,5);<br>
+}<br>
+void pa(int *a,int n)<br>
+{<br>
+int i;<br>
+for(i=0;i&lt;n;i++)<br>
+printf(&quot;%d\n&quot;,*(a++)+i);<br>
+}</p>
+
+<p><br>
+Q29)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+void print(void);<br>
+{<br>
+print();<br>
+}<br>
+void f1(void)<br>
+{<br>
+printf(&quot;\nf1():&quot;);<br>
+}</p>
+
+<p><br>
+Q30)&nbsp; Find the output for the following C program</p>
+
+<p>#include &quot;6.c&quot;<br>
+void print(void)<br>
+{<br>
+extern void f1(void);<br>
+f1();<br>
+}<br>
+static void f1(void)<br>
+{<br>
+printf(&quot;\n static f1().&quot;);<br>
+}</p>
+
+<p><br>
+Q31)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+static int i=50;<br>
+int print(int i);<br>
+void main(void)<br>
+{<br>
+static int i=100;<br>
+while(print(i))<br>
+{<br>
+printf(&quot;%d\n&quot;,i);<br>
+i--;<br>
+}<br>
+}<br>
+int print(int x)<br>
+{<br>
+static int i=2;<br>
+return(i--);<br>
+}</p>
+
+<p><br>
+Q32)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+typedef struct NType<br>
+{<br>
+int i;<br>
+char c;<br>
+long x;<br>
+} NewType;<br>
+void main(void)<br>
+{<br>
+NewType *c;<br>
+c=(NewType *)malloc(sizeof(NewType));<br>
+c-&gt;i=100;<br>
+c-&gt;c='C';<br>
+(*c).x=100L;<br>
+printf(&quot;(%d,%c,%4Ld)&quot;,c-&gt;i,c-&gt;c,c-&gt;x);<br>
+}</p>
+
+<p><br>
+Q33)&nbsp; Find the output for the following C program</p>
+
+<p>#include&lt;stdio.h&gt;<br>
+void main(void);<br>
+const int k=100;<br>
+void main(void)<br>
+{<br>
+int a[100];<br>
+int sum=0;<br>
+for(k=0;k&lt;100;k++)<br>
+*(a+k)=k;<br>
+sum+=a[--k];<br>
+printf(&quot;%d&quot;,sum);<br>
+}</p>
+
+<p align="center"><a href="#top">Back to top</a></p>
+</font>
+</body>
+</html>

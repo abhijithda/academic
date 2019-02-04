@@ -1,0 +1,34 @@
+Here are some puzzles.....
+-----------------------------------------------------------------------------------------------------------------
+1.    x+x+x+.....(x times) = x*x
+     
+       differentiate both sides....
+
+       1+1+1+....(x times) = 2x
+
+                           x     =   2x
+
+                           1     =    2
+       Prove this wrong....
+
+2.    There are 10 gates on the way out of a mangrove.A man visits the mangrove and plucks some mangoes.At each gate,he has to give the gate-keeper,all the mangoes he has and the gate-keeper will return back one mango in excess of half of the mangoes he recieved from the man.If the man has to take home 2 mangoes, how many mangoes will he have to pluck?
+
+3.    A clock takes 7 secs to strike 7 times at 7 'o clock.How long will it take to strike at 10 'o clock?
+
+4.    A car,travelling at a uniform speed,takes 12 secs to cross 12 poles spaced at regular distances.How long will it take to cross 8 more poles?
+
+5.    Using only two 2's,get 32....(use only two 2's and no other numbers allowed.....
+you can make use of any mathematical function)
+
+6.    You have 2 pieces of ropes which burn at a uniform rate.One can burn completely in 1hr and the other in 30 mins.Using both of them,tell me a way to measure 45 minutes.
+
+7.    There are two rooms which are not visible from each other.There is a lamp in one room and three switches in the other room.You are allowed to visit each room only once.Tell me a way to exactly tell the switch which corresponds to the lamp.
+
+8.    Two apples,three oranges and four mangoes cost 15rs.Three apples,two oranges and one mango costs 10rs.What should I pay if I buy three of each friut?
+
+9.    Starting with a litre of benzene and benzaldehyde in two containers,100 ml of benzaldehyde is taken out and added to benzene and the mixture is stirred.Then,100 ml of the above mixture is taken out and added to benzaldehyde.Now,is there more benzene in benzaldehyde or more benzaldehyde in benzene?(benzene and benzaldehyde are miscible with each other).
+
+10.   This is a tough one....I too do not know how to go about it.So,if anyone gets the hang of this,Please do tell me.
+        
+        A car is travelling in a highway.The driver sees a milestone with a two-digit number on it.After one hour of travelling,the driver again sees the same numbers,in the reverse order.After one more hour,he sees the same two numbers again.What is the average speed of the car?
+(Hint : The path may be circular......It is my theory,and it may not be so).

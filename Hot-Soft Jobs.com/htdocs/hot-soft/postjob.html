@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head><title>New Page 1</title>
+<meta http-equiv="Content-Language" content="en-us">
+<meta content="Microsoft FrontPage 5.0" name="GENERATOR">
+<meta content="FrontPage.Editor.Document" name="ProgId">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head>
+<body>
+
+<SCRIPT language=javascript>
+<!--
+
+	function validate()
+	{
+		if(document.post_job.jtitle.value== "" || document.post_job.jtitle.value.length > 70)
+		{
+			alert("Enter Job title not more than 70 characters.");
+			return false;
+		}
+	
+		if(document.post_job.jdesc.value=="" || document.post_job.jdesc.value.length > 200)
+		{
+			alert("Enter Job Description not exceeding 200 characters.");
+			return false;
+		}
+		if(document.post_job.name.value== "" || document.post_job.name.value.length > 20)
+		{
+			alert("Enter your Name not exceeding than 20 characters.");
+			return false;
+		}
+		if(document.post_job.cname.value== "" || document.post_job.cname.value.length> 20)
+		{
+			alert("Enter Company Name not more than 20 characters.");
+			return false;
+		}
+		if(document.post_job.email.value== "" )
+		{
+			alert("Enter Email ID.");
+			return false;
+		}
+		if(document.post_job.pincode.value== ""  )
+		{
+			alert("Enter Pin code.");
+			return false;
+		}
+		if(document.post_job.phone.value== "")
+		{
+			alert("Enter Phone Number not more than 20 characters.");
+			return false;
+		}
+		return true;
+	//VALIDATE Email Address
+	form.email.value= trimWS(form.email.value)
+	if (form.email.value == "" ) {
+		alert("You must enter an email address.")
+		form.email.focus()
+		return false
+	}
+	if (!validEmail(form.email.value)) {
+		alert("You must enter a valid email address.")
+		form.email.focus()
+		form.email.select()
+		return false
+	}
+	
+
+	
+}
+-->
+      </SCRIPT>
+      
+      
+      
+      
+      
+      
+      <SCRIPT language=javascript type=text/javascript>
+<!--
+
+function trimWS(s)
+{
+	// Remove leading and trailing whitespace.
+	while(s.substr(s.length - 1) == " ")
+		s= s.substr(0, s.length - 1);
+	while(s.indexOf(" ") == 0)
+		s= s.substr(1);
+
+	return s;
+}
+
+function isNum(passedVal) {	// Is this a number?
+	var i
+	for (i=0; i<passedVal.length; i++) {
+		if ( passedVal.charAt(i) < "0" || passedVal.charAt(i) > "9" ) {
+			return false
+		}
+	}
+	return true
+}
+
+function validEmail(email) {
+	var i, badChar, atPos, periodPos, invalidChars = " :,;"
+	
+	if (email == "") {						// cannot be empty
+		return false
+	}
+	for (i=0; i<invalidChars.length; i++) {	// does it contain any invalid characters?
+		badChar = invalidChars.charAt(i)
+		if (email.indexOf(badChar,0) > -1) {
+			return false
+		}
+	}
+	atPos = email.indexOf("@",1)			// there must be one "@" symbol
+	if (atPos == -1) {
+		return false
+	}
+	if (email.indexOf("@",atPos+1) != -1) {	// and only one "@" symbol
+		return false
+	}
+	periodPos = email.indexOf(".",atPos)
+	if (periodPos == -1) {					// and at least one "." after the "@"
+		return false
+	}
+	if (periodPos+3 > email.length)	{		// must be at least 2 characters after the "."
+		return false
+	}
+	return true
+}
+
+//-->
+      </SCRIPT>
+
+<form name=post_job action="http://localhost/cgi-bin/hot-soft/jobpost.cgi" onsubmit="return validate(this)"  method="post">
+<table cellspacing="0" cellpadding="0" width="672" border="0">
+  <tbody>
+  <tr>
+    <td align="center" width="201" bgcolor="#000000" height="20">
+    <font face="Verdana" color="#ffffff" size="1"><b><a href="http://localhost/hot-soft/home.html">
+    <font color="#C0C0C0">Home</font></a></b></font></td>
+    <td align="center" width="208" bgcolor="#990099">
+    <font face="Verdana" size="1"><font color="#FFFF00">Employers Post a Job</font> </font></td></tr></tbody></table>
+<p>      <img height="86" src="postjob_files/Hot-Soft%2520Jobs.GIF" width="600" border="0"></p>
+<table cellspacing="0" cellpadding="0" width="598" border="0">
+  <tbody>
+  <tr>
+    <td align="justify" colspan="2" height="30"><font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+    * Required Information </font></td></tr>
+  <tr>
+    <td align="justify" colspan="2" height="30"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Category: </font>
+    <font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+    *</font><br clear="all"></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td><img height="1" src="pixel.gif" width="10" border="0"><br clear="all"></td>
+          <td valign="top"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+          <select size="5" name="jcat">
+          <option selected>Engineering</option><option>Consulting Services</option>
+          <option>IT - Hardware</option><option>IT - Internet/E-commerce</option>
+          <option>IT - Software</option><option>IT - Telecommunications</option>
+          <option>IT -Other</option><option>Human Resources</option><option>Customer Service and Call Centre</option></select> 
+          </font></td>
+          <td><img height="1" src="pixel.gif" width="10" border="0"><br clear="all"></td>
+          <td> </td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify">
+    <br clear="all"></td>
+    <td><img height="2" alt="" src="pixel.gif" width="2" border="0"><br clear="all"><br></td></tr>
+  <tr>
+    <td align="justify" colspan="2" height="30">
+    <font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+    *</font><font face="Verdana, Arial, Helvetica, sans-serif" size="2"> City: (Choose the 
+      nearest city)</font></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" width="172" border="0">
+        <tbody>
+        <tr>
+          <td width="10"><img height="1" src="pixel.gif" width="10" border="0"><br clear="all"></td>
+          <td width="162"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+          <!--webbot bot="Validation" b-value-required="TRUE" b-disallow-first-item="TRUE" --><select size="1" name="city"><option>Bangalore</option><option>Calcutta</option><option>Chennai</option><option>Cochin</option><option>Bombay</option><option>Delhi</option><option>Hyderabad</option><option>Pune</option><option>Trivandrum</option></select> 
+  </font></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2"> </td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td align="left" height="30"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>Enter job 
+            title (use complete words if possible, ie. Senior, not Sr.): 
+          </font></td>
+          <td valign="top" align="left" height="30"><br>
+          <font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+          *</font><br clear="all"></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td colspan="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><input maxlength="70" size="40" name="jtitle"><br><font face="Verdana,Arial,Helvetica" color="#000000" size="2">70 Character Limit 
+            </font></font></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td align="left" height="30"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>Enter a 
+            Description of the Job: </font></td>
+          <td valign="top" align="left" height="30"><br>
+          <font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+          *</font><br clear="all"></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td align="left" colspan="4" height="50"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Contact 
+            information should not be entered with the description. There is 
+            space provided for entering contact information below this box. 
+            Please be sure to edit your ad for accuracy (200 characters 
+            limit). </font></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td colspan="3"><textarea name="jdesc" rows="10" wrap="physical" cols="60"></textarea> 
+            <br></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td align="left" height="30"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Career Level: 
+            </font></td>
+          <td align="left" height="30">
+          <font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+          *</font><br clear="all"></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td colspan="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+          <select name="jlevel">
+          <option selected>Student</option>
+          <option>Entry Level (less than 2 years experience)</option><option>Mid Career</option>
+          <option>Management (Manager/Director of Staff)</option><option>Executive (SVP, EVP, VP)</option>
+          <option>Senior Executive (President, CEO)</option></select> 
+      </font></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td align="left" height="30"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>Job Type 
+            </font></td>
+          <td align="left" height="30">
+          <font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+          *</font><br clear="all"></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td><img height="2" alt="" src="" width="10" border="0"><br clear="all"><br></td>
+          <td colspan="3"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><select name="jtype">
+          <option selected>Permanant</option><option>Temporary / Contract / 
+              Project</option><option>Intern / Work 
+            Experience</option></select></font> </td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td align="left" height="30"> </td>
+          <td align="left" height="30"> </td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td colspan="3"> </td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2"> </td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td align="left" height="30"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>Enter Salary 
+            Information: </font></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td colspan="3">
+            <table cellspacing="1" cellpadding="1" border="0">
+              <tbody>
+              <tr>
+                <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Minimum
+                <!--webbot bot="Validation" s-data-type="Integer" s-number-separators="," i-maximum-length="10" --><input maxlength="10" size="10" name="minpay"> Maximum
+                <!--webbot bot="Validation" s-data-type="Number" s-number-separators=",." i-maximum-length="10" --><input maxlength="10" size="10" name="maxpay"> INR </font></td></tr>
+              <tr>
+                <td> </td></tr></tbody></table></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td align="left" height="30"><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><br>Enter your 
+            contact information:</font></td></tr></tbody></table></td></tr>
+  <tr>
+    <td align="justify" colspan="2">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td colspan="4">
+          <img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+        </tr><tr>
+          <td align="right" width="200"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Contact Name: 
+            </font></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+          *</font><br clear="all"></td>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><input maxlength="45" size="30" name="name"> </font></td>
+          <td></td></tr>
+        <tr>
+          <td align="right" width="200"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Company Name: 
+            </font></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+          *</font><br clear="all"></td>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><input maxlength="45" size="30" name="cname"> </font></td>
+          <td></td></tr>
+        <tr>
+          <td align="right" width="200"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Email: 
+</font></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+          *</font><br clear="all"></td>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><input maxlength="45" size="30" name="email"> </font></td>
+          <td></td></tr>
+        <tr>
+          <td align="right" width="200"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Company Address: 
+            </font></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+          *</font><br clear="all"></td>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><input maxlength="45" size="30" name="caddr"> </font></td>
+          <td></td></tr>
+        <tr>
+          <td align="right" width="200"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+          City/State/Country: </font></td>
+          <td><br clear="all"></td>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+          <input maxlength="45" size="30" name="country"> </font></td>
+          <td></td></tr>
+        <tr>
+          <td align="right" width="200"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">State: 
+</font></td>
+          <td><br clear="all"></td>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><input maxlength="22" size="22" name="state"> </font></td>
+          <td></td></tr>
+        <tr>
+          <td align="right" width="200"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">PIN Code: 
+          </font></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+          *</font><br clear="all"></td>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><input maxlength="10" size="15" name="pincode"> </font></td>
+          <td></td></tr>
+        <tr>
+          <td align="right" width="200"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Company Phone 
+            Number: </font></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" color="red" size="2">
+          *</font><br clear="all"></td>
+          <td><img height="2" alt="" src="pixel.gif" width="10" border="0"><br clear="all"><br></td>
+          <td><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><input maxlength="45" size="30" name="phone"> </font></td>
+          <td></td></tr></tbody></table></td></tr>
+  <tr>
+    <td valign="top" align="justify" colspan="2"><br><br><font face="Verdana, Arial, Helvetica, sans-serif" size="2">This information 
+      contained in this form will be forwarded to a Hot-Soft Jobs Sales 
+      Representative. The Hot-Jobs Sales Representative will contact you to 
+      confirm your payment details. </font></td></tr>
+  <tr>
+    <td valign="top" align="justify" colspan="2"> </td></tr>
+  <tr>
+    <td valign="top" align="justify" colspan="2"><font face="Verdana, Arial, Helvetica, sans-serif" size="1">Hot-Soft 
+      Jobs.com</font><font face="Verdana, Arial, Helvetica, sans-serif" color="#000000" size="1"> reserves the right to reject ads that are not 
+      bona-fide recruitment ads, or for any other reason we consider not in the 
+      best interest of Hot-Soft Jobs.com. 
+      <br><br>                                                                                                                                                                          </font></td></tr></tbody></table>
+<p>&nbsp;&nbsp;&nbsp;                                                    
+<input type="submit" value="Submit" name="submit">            
+<input type="reset" value="Clear Form" name="reset"> </p></form></body></html>
