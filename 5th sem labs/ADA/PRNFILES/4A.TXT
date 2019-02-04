@@ -1,0 +1,97 @@
+/*	Name : ABHIJITH D.A.		Reg.no : 1PI01IS001
+
+Q>.Write a program to check whether the given graph is connected or not
+   using Warshall's algorithm
+*/
+
+#include<iostream.h>
+#include<conio.h>
+#define MAX 20
+
+
+void main()
+{
+ int warshall(int a[MAX][MAX],int n);
+
+ int a[MAX][MAX],i,j,k,n;
+ clrscr();
+ cout<<"\n Enter the no. of verticies : \t";
+ cin>>n;
+ cout<<"\n Enter the adjacency matrix\n ";
+ for(i=1;i<=n;i++)
+  for(j=1;j<=n;j++)
+   cin>>a[i][j];
+ if(warshall(a,n))
+  cout<<"\n The graph is connected.";
+ else
+  cout<<"\n The graph is disconnected.";
+ getch();
+}
+
+int warshall(int a[MAX][MAX],int n)
+{
+ int arr[MAX][MAX],temp,i,j,k;
+ for(i=1;i<=n;i++)
+  for(j=1;j<=n;j++)
+   arr[i][j]=a[i][j];
+ for(i=1;i<=n;i++)
+ {
+ temp=0;
+  for(j=1;j<=n;j++)
+  {
+   for(k=1;k<=n;k++)
+	temp+=a[i][k]*arr[k][j];
+	arr[i][j]=temp;
+  }
+ }
+ for(i=1;i<=n;i++)
+  for(j=1;j<=n;j++)
+   if(arr[i][j]==0)
+	return 0;
+ return 1;
+}
+
+
+/*-----------------------------------Outputs-----------------------------------------------
+
+1>.
+
+ Enter the no. of verticies :   3
+
+ Enter the adjacency matrix
+ 0 1 0
+1 0 0
+0 0 0
+
+ The graph is disconnected.
+
+2>.
+
+ Enter the no. of verticies :   9
+
+ Enter the adjacency matrix
+ 0 0 0 1 1 1 1 1 1
+ 0 0 1 0 0 0 0 0 0
+ 0 1 0 0 0 0 0 0 0
+ 1 0 0 0 0 1 0 0 0
+ 1 0 0 0 0 0 1 1 0
+ 0 0 0 1 0 0 0 0 0
+ 0 0 0 0 1 0 0 0 0
+ 0 0 0 0 1 0 0 0 1
+ 0 0 0 0 0 0 0 1 0
+
+ The graph is disconnected.
+
+3>.
+
+ Enter the no. of verticies :   4
+
+ Enter the adjacency matrix
+ 0 1 1 0
+ 1 0 0 1
+ 1 0 0 1
+ 0 1 1 0
+
+ The graph is connected.
+
+*/

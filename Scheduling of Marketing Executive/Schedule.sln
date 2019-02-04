@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedule", "Schedule.csproj", "{71FB693E-5393-4C1C-A59E-31A06FD13642}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{71FB693E-5393-4C1C-A59E-31A06FD13642}.Debug.ActiveCfg = Debug|.NET
+		{71FB693E-5393-4C1C-A59E-31A06FD13642}.Debug.Build.0 = Debug|.NET
+		{71FB693E-5393-4C1C-A59E-31A06FD13642}.Release.ActiveCfg = Release|.NET
+		{71FB693E-5393-4C1C-A59E-31A06FD13642}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

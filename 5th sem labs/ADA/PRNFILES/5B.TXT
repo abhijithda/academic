@@ -1,0 +1,118 @@
+/*	Name : ABHIJITH D.A.		Reg.no : 1PI01IS001
+
+5b>.	Write a program to print all nodes that are reachable from a given starting node
+	in a digraph using Breadth First Search.
+*/
+
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+
+#define MAX 50
+
+class queue
+{
+ private :
+	   int q[MAX],f,r;
+ public :
+	  queue():r(-1),f(0) {}
+	  int empty() { return r==-1; }
+	  void ins(int x);
+	  int del(void);
+};
+
+void queue :: ins(int x)
+{
+ if(r!=MAX-1)
+  q[++r]=x;
+ else
+ {
+  cout<<"\n\t Overflow.";
+  exit(1);
+ }
+}
+
+int queue :: del(void)
+{
+ int x;
+ if(r==-1)
+ {
+  cout<<"\n\t Underflow. ";
+  exit(0);
+ }
+ else
+ {
+  x=q[f];
+  if(f==r)
+   f=0,r=-1;
+  else
+   f++;
+ }
+ return x;
+}
+
+void main()
+{
+ clrscr();
+ queue q;
+ int m[MAX][MAX],i,j,n,s,rchd[MAX],x;
+ cout<<"\n\t Enter the no. of nodes : ";
+ cin>>n;
+ cout<<"\n\t Enter Adjacency matrix\n ";
+ for(i=1;i<=n;i++)
+  for(j=1;j<=n;j++)
+   cin>>m[i][j];
+ cout<<"\n\t Enter the start node : ";
+ cin>>s;
+ for(i=1;i<=n;i++)
+  rchd[i]=0;
+ q.ins(s);
+ while(!q.empty())
+ {
+  x=q.del();
+  rchd[x]=1;
+  for(i=1;i<=n;i++)
+   if(m[x][i] && !rchd[i])
+    q.ins(i);
+ }
+ cout<<"\n\t Following verticies are reachable from node : "<<s<<"\n\t";
+ for(i=1;i<=n;i++)
+  if(rchd[i] && i!=s)
+   cout<<i<<"  ";
+ getch();
+}
+
+/*---------------------------------Outputs-----------------------------------
+
+1>.
+         Enter the no. of nodes : 4
+
+         Enter Adjacency matrix
+ 0 1 0 1
+1 0 0 1
+0 0 0 0
+1 0 0 0
+
+         Enter the start node : 2
+
+         Following verticies are reachable from node : 2
+        1  4
+
+2>.
+
+         Enter the no. of nodes : 6
+
+         Enter Adjacency matrix
+ 0 1 1 0 1 0
+1 0 0 0 0 0
+1 0 0 0 1 0
+0 0 0 0 0 1
+0 0 1 0 0 0
+0 0 0 1 0 0
+
+         Enter the start node : 1
+
+         Following verticies are reachable from node : 1
+        2  3  5
+
+*/

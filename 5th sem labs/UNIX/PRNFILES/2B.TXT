@@ -1,0 +1,40 @@
+/*	Name : ABHIJITH D.A.	Reg.no : 1PI01IS001
+
+2b>. Write a C program to create a file with 16 bytes of arbitray
+     data from the beginning and another 16 bytes of arbitrary data 
+     from an offset of 48 . Display the file contents, demonstrate
+     how the whole in the file is handled.
+*/
+
+#include<stdio.h>
+#include<fcntl.h>
+
+int main()
+{
+ 	FILE *ptr=fopen("file2b","w");
+	char ch;
+	int i;
+	for(i=0;i<16;i++)
+		fputc('i',ptr);
+	fseek(ptr,48,1);
+	for(i=0;i<16;i++)
+		fputc('i',ptr);
+	fclose(ptr);
+	printf("\n\t The contents of the file are\n");
+	ptr=fopen("file2b","r");
+	do
+		printf("%c",ch=(fgetc(ptr))) ;
+	while(ch!=EOF);
+	getchar();
+}
+
+/*-------------------------------Output--------------------------------
+
+[root@localhost unix]# cc 2b.c
+[root@localhost unix]# ./a.out
+
+	 The contents of the file are
+iiiiiiiiiiiiiiii                                                iiiiiiiiiiiiiiiiÿ
+[root@localhost unix]# 
+
+*/

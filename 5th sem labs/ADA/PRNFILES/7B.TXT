@@ -1,0 +1,81 @@
+/*	Name : ABHIJITH D.A.		Reg.no : 1PI01IS001
+
+7b>. 	Write a program to print all nodes that are reachable from a given starting node in a	
+	digraph using Depth First Search.
+*/
+
+#include<iostream.h>
+#include<conio.h>
+
+void dfs(int *,int ,int );
+int m[20][20];
+
+void main()
+{
+ int i,j,n,s,rhcd[20],x;
+ clrscr();
+ cout<<"\n\t Enter number of nodes : ";
+ cin>>n;
+ cout<<"\n\t Enter Adjacency Matrix \n";
+ for(i=1;i<=n;i++)
+  for(j=1;j<=n;j++)
+   cin>>m[i][j];
+ cout<<"\n\t Enter start node : ";
+ cin>>s;
+ for(i=1;i<=n;i++)
+  rhcd[i]=0;
+ dfs(rhcd,s,n);
+ cout<<"\n\t The vertices are reachable from node "<<s<<" are\n";
+ for(i=1;i<=n;i++)
+  if(rhcd[i] && i!=s)
+   cout<<i<<"  ";
+ getch();
+}
+
+void dfs(int *rhcd,int node,int n)
+{
+ rhcd[node]=1;
+ for(int i=1;i<=n;i++)
+  if(!rhcd[i] && m[node][i])
+   dfs(rhcd,i,n);
+}
+
+-----------------------------------Outputs-----------------------------
+
+1>.
+
+         Enter number of nodes : 6
+
+         Enter Adjacency Matrix
+ 0 1 1 0 1 0
+1 0 0 0 0 0
+1 0 0 0 1 0
+0 0 0 0 0 1
+0 0 1 0 0 0
+0 0 0 1 0 0
+
+         Enter start node : 1
+
+         The vertices are reachable from node 1 are
+2  3  5
+
+
+2>.
+
+         Enter number of nodes : 8
+
+         Enter Adjacency Matrix
+0 1 1 0 0 0 0 0
+1 0 0 1 0 0 0 0
+1 0 0 0 0 0 0 0
+0 1 0 0 0 0 1 0
+0 1 0 0 0 1 0 0
+0 0 0 0 1 0 1 1
+0 0 0 1 0 1 0 0
+0 0 0 0 0 1 0 0
+
+         Enter start node : 1
+
+         The vertices are reachable from node 1 are
+2  3  4  5  6  7  8
+

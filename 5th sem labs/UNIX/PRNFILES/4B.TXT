@@ -1,0 +1,48 @@
+/*	Name : ABHIJITH D.A.	Reg.no : 1PI01IS001
+
+4b>. Write a C program which accepts one command line argument,
+     executes the argument as a shell command determines the
+     time taken by it and print the timing values. Use the time's
+     function and the "tms" structure. The code need not include
+     error checking.
+*/
+
+#include<stdio.h>
+#include<sys/times.h>
+#include<unistd.h>
+#include<time.h>
+	
+int main(int argc, char *argv[])
+{
+	struct tms tms1,tms2;
+ 	clock_t begin,end;
+	long clktick = sysconf(_SC_CLK_TCK);
+	begin=times(&tms1);
+	system(argv[1]);
+	end=times(&tms2);
+	printf("\n\t Time taken is %f ",(end-begin)/(double)CLK_TCK);
+	printf("\n\t Time taken is %f ",(tms2.tms_utime-tms1.tms_utime)/(double)clktick);
+	getchar();
+}
+
+/*----------------------------Outputs----------------------------
+
+[root@localhost unix]# ./a.out date
+Sun Oct 19 21:47:37 CXT 2003
+
+	 Time taken is 0.010000 
+	 Time taken is 0.000000 
+[root@localhost unix]# ./a.out who
+abhi     tty1         Oct 19 20:53         
+
+	 Time taken is 0.000000 
+	 Time taken is 0.000000 
+[root@localhost unix]# ./a.out ls
+11b.c  1b.c   3a.sh  4b.c   5b.c   linkfile  temp1  temp3
+1a.sh  2a.sh  3b.c   4bc.c  a.out  temp      temp2  typescript
+
+	 Time taken is 0.010000 
+	 Time taken is 0.000000 
+[root@localhost unix]# 
+*/
+

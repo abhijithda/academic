@@ -1,0 +1,83 @@
+/*	Name : ABHIJITH D.A.		Reg.no : 1PI01IS001
+
+6b>. 	Write a program to sort all the elements of an array of size using 'n' using 
+	Recursive Quick Sort.
+*/
+
+#include<iostream.h>
+#include<stdlib.h>
+#include<conio.h>
+
+int quick(int a[],int low,int high)
+{
+ int i,j,tmp;
+ int key = a[low];
+ while(1)
+ {
+  i=low+1;
+  j=high;
+  while(a[i]<=key && i<high)
+   i++;
+  while(a[j]>key)
+   j--;
+  if(i<j)
+  {
+   tmp=a[i];
+   a[i]=a[j];
+   a[j]=tmp;
+  }
+  else
+  {
+   tmp=a[j];
+   a[j]=a[low];
+   a[low]=tmp;
+   return j;
+  }
+ }
+}
+
+void quick_sort(int a[],int low,int high)
+{
+ int j;
+ if(low<high)
+ {
+  j=quick(a,low,high);
+  quick_sort(a,low,j);
+  quick_sort(a,j+1,high);
+ }
+}
+
+void main()
+{
+ int a[100],n;
+ clrscr();
+ cout<<"\n\t Enter the Size of the array : ";
+ cin>>n;
+ for(int i=0;i<n;i++)
+  cout<<(a[i]=random(1000))<<"\t";
+ quick_sort(a,0,n-1);
+ cout<<"\n\t The sorted array is \n";
+ for(i=0;i<n;i++)
+  cout<<"\t"<<a[i];
+ getch();
+}
+
+
+/*-----------------------------Outputs-------------------------------------
+
+1>.
+
+         Enter the Size of the array : 5
+10      3       335     33      355
+         The sorted array is
+        3       10      33      335     355
+
+2>.
+         Enter the Size of the array : 10
+10      3       335     33      355     217     536     195     700     949
+
+         The sorted array is
+        3       10      33      195     217     335     355     536     700
+949
+
+*/
